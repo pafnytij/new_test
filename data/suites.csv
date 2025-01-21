@@ -1,0 +1,3206 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Nov 02 11:43:17 UTC 2020","Mon Nov 02 11:43:17 UTC 2020","2","Antelope","test_createaccount","","","","Запрос createaccount: несуществующая группа.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляем запрос createaccount с group=alluretest - группы не существует на сервере
+            Ожидаемый результат: result=-3&reason=Unable to get group 'alluretest': MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: удаление аккаунта
+        "
+"failed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","17","Antelope","test_createaccountsinrange","","","","Запрос createaccountsinrange: некорректные значения в необязательных параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountsinrange с некорректным значением в параметре leverage
+            Шаг2: отправляем запрос createaccountsinrange с некорректным значением в параметре agent
+            Шаг3: отправляем запрос createaccountsinrange с некорректным значением в параметре enable
+            Шаг4: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_change_password
+            Шаг5: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_trading
+            Шаг6: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_trading_by_expert_advisors
+            Шаг7: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_web_api_connection
+            Шаг8: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_daily_report
+            Шаг9: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_change_password_at_next_login
+            Шаг10: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_one_time_password
+            Шаг11: отправляем запрос createaccountsinrange с некорректным значением в параметре enable_trailing_stop
+            Ожидаемый ответ:result=-3&reason=parsing_problem&request_id=
+
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","2","Antelope","test_changepassword","","","","Запрос changepassword: короткий пароль.","
+    Описание шагов:
+        Setup: Создаём аккаунт 100.
+        Тест: отправляем запрос changepassword с pass = q2
+            Ожидаемый результат: result=-4&reason=Unable change password, ret: MT_RET_USR_INVALID_PASSWORD&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:47:01 UTC 2020","Mon Nov 02 11:47:01 UTC 2020","6","Antelope","test_getpendingorders","","","","Запрос getpendingorders: проверка работы - есть открытые ордера.","
+    Описание шагов:
+        Setup: создаем 1 аккаунт
+        Тест:
+            Шаг1: Открываем пендинг
+            Шаг2: Отправляем запрос getopenpositionsforlogin, проверяем ответ
+        Tear down: удаляем позицию / ордер, удаляем аккаунт
+        "
+"passed","Mon Nov 02 11:43:30 UTC 2020","Mon Nov 02 11:43:30 UTC 2020","3","Antelope","test_getaccountswithpl","","","","Запрос getaccountswithpl: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - начисляем баланс 10.000.
+            - вбрасываем котировку EURUSD 0,9/1,0
+            - открываем позицию 0,01 лот buy - при таких настройках профит = - 100
+        Тест:
+            Шаг1: отправляем запрос getaccountswithpl с typeofcomparison=5
+                Ожидаемый ответ: result=-3&reason=Invalid parameter typeofcomparison.&request_id=
+            Шаг2: отправляем запрос getaccountswithpl с некорректным значением в typeofcomparison
+            Шаг3: отправляем запрос getaccountswithpl с некорректным значением в value
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: закрываем позицию
+            -удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getloginsbygroup","","","","Запрос getloginsbygroup: несуществующая группа.","
+    Описание шагов:
+        Тест:
+            Шаг1: отправляем запрос getloginsbygroup с ошибкой в параметре group
+            Шаг2: отправляем запрос getloginsbygroup без параметра group
+        Ожидаемый результат: result=-3&reason=invalid params (required params are group)&request_id=
+    "
+"passed","Mon Nov 02 11:41:04 UTC 2020","Mon Nov 02 11:41:05 UTC 2020","1006","Antelope","test_changecredit","","","","Запрос changecredit: Попытка списать в минус.","
+    Описание шагов:
+        Setup:создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: отправляю запрос changecredit на списание аккаунта 10.000.
+                Ожидаемый ответ: result=-4&reason=Unable to change balance on 100 with value -10000, ret: MT_RET_REQUEST_NO_MONEY&login=100&request_id=
+            Шаг2: проверка кредита аккаунта
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:43:15 UTC 2020","Mon Nov 02 11:43:16 UTC 2020","1006","Antelope","test_closeposition","","","","Запрос closeposition: в перечне есть некорректное значение.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - пополняем ему баланс на 10.000.
+            - открываем 2 позиции.
+        Тест:
+            Шаг1: отправляем запрос closeposition с некорректным значением позицией в перечне
+            Шаг2: проверяем ответ на запрос
+            Ожидаемый ответ:""result=1&reason=&failed_position=asd&size=8
+                            pos1;
+                            &request_id=""
+            Шаг3: проверяем суцществующую сделку
+            Шаг4: отправляем запросом closeposition с некорректным и не существующим значениями позиций в перечне.
+            Ожмдаемый ответ: result=-4&reason=positions can not be closed&failed_position=706357;asd&size=0&request_id=
+        Tear down: удаление аккаунта
+    "
+"failed","Mon Nov 02 11:43:17 UTC 2020","Mon Nov 02 11:43:17 UTC 2020","8","Antelope","test_createaccount","","","","Запрос createaccount: некорректные значения в необязательных параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccount с leverage=asd
+            Шаг2: отправляем запрос createaccount с agent=asd
+            Шаг3: отправляем запрос createaccount с enable=asd
+            Шаг4: отправляем запрос createaccount с enable_change_password=asd
+            Шаг5: отправляем запрос createaccount с enable_trading=asd
+            Шаг6: отправляем запрос createaccount с enable_trading_by_expert_advisors=asd
+            Шаг7: отправляем запрос createaccount с enable_web_api_connection=asd
+            Шаг8: отправляем запрос createaccount с enable_daily_report=asd
+            Шаг9: отправляем запрос createaccount с enable_change_password_at_next_login=asd
+            Шаг10: отправляем запрос createaccount с enable_one_time_password=asd
+            Шаг11: отправляем запрос createaccount с enable_trailing_stop=asd
+            Ожидаемый результат: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:47 UTC 2020","Mon Nov 02 11:36:48 UTC 2020","1007","Antelope","test_balancefix","","","","Запрос balancefix: проверка работы - один логин.","
+        Описание шагов:
+            Setup: Создание аккаунтов с историей.
+            Тест: запросом balancefix восстанавливаем баланс аккаунта и сравниваем с изначальным (0).
+            Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:49:07 UTC 2020","Mon Nov 02 11:49:07 UTC 2020","8","Antelope","test_openorder","","","","Запрос openorder: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос openorder с ошибкой в параметре login
+            Шаг2: отправляем запрос openorder с ошибкой в параметре cmd
+            Шаг3: отправляем запрос openorder с ошибкой в параметре volume
+            Шаг4: отправляем запрос openorder с ошибкой в параметре symbol
+            Шаг5: отправляем запрос openorder без параметра login
+            Шаг6: отправляем запрос openorder без параметра cmd
+            Шаг7: отправляем запрос openorder без параметра volume
+            Шаг8: отправляем запрос openorder без параметра symbol
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are login, symbol, cmd, volume)&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:59 UTC 2020","Mon Nov 02 11:43:59 UTC 2020","3","Antelope","test_getdealsforloginwithlimit","","","","Запрос getdealsforloginwithlimit: некорректные значения.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getdealsforloginwithlimit с некорректным значением в параметре login
+            Шаг2: отправляем запрос getdealsforloginwithlimit с некорректным значением в параметре start
+            Шаг3: отправляем запрос getdealsforloginwithlimit с некорректным значением в параметре limit
+                Ожмдаемый ответ: result=-3&reason=parsing_problem&request_id=
+    "
+"failed","Mon Nov 02 11:47:49 UTC 2020","Mon Nov 02 11:47:49 UTC 2020","33","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: проверка работы - перечень.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,101.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрашиваем время сервера для значений from и to
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume c значениями  from и to
+            Шаг2: проверка ответа
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:44:01 UTC 2020","Mon Nov 02 11:44:01 UTC 2020","5","Antelope","test_getdealsforloginwithlimit","","","","Запрос getdealsforloginwithlimit: некорректные обязательные параметры или их отсутствие..","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getdealsforloginwithlimit с ошибкой в параметре login
+            Шаг2: отправляем запрос getdealsforloginwithlimit с ошибкой в параметре start
+            Шаг3: отправляем запрос getdealsforloginwithlimit с ошибкой в параметре limit
+            Шаг4: отправляем запрос getdealsforloginwithlimit без параметра login
+            Шаг5: отправляем запрос getdealsforloginwithlimit без параметра start
+            Шаг6: отправляем запрос getdealsforloginwithlimit без параметра limit
+            Ожмдаемый ответ: result=-3&reason=invalid params (required params are login, start, limit)&request_id=42
+    "
+"passed","Mon Nov 02 11:44:00 UTC 2020","Mon Nov 02 11:44:00 UTC 2020","6","Antelope","test_getdealsforloginwithlimit","","","","Запрос getdealsforloginwithlimit: парамеьтры start и limit.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позиции
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getdealsforloginwithlimit с start = limit
+            Шаг2: отправляем запрос getdealsforloginwithlimit с start > limit
+                Ожмдаемый ответ: result=-3&reason=Limit is bigger than start&request_id=
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:49:19 UTC 2020","Mon Nov 02 11:49:19 UTC 2020","3","Antelope","test_openpending","","","","Запрос openpending: на аккаунте недостаточно средств ","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг1: списываем баланс 100 аккаунта
+            Шаг2: отправляем запрос openpending
+            Шаг3: проверяем ответ
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:44 UTC 2020","Mon Nov 02 11:43:45 UTC 2020","1001","Antelope","test_getcharthistory","","","","Запрос getcharthistory: несуществующий символ.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getcharthistory с несуществующим на сервере символом
+            Шаг2: проверяем ответ
+            Ожмдаемый ответ: result=-4&reason=Unable to request chart-bars for symbol 'TEST_WIK5': MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","3","Antelope","test_getmargininfo","","","","Запрос getmargininfo: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getmargininfo с ошибкой в параметре login
+            Шаг1: отправляем запрос getmargininfo без параметра login
+            Ожидаемый результат: ""result=-3&reason=invalid params (required params are login (separated by semicolon))&request_id=""
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:36:37 UTC 2020","Mon Nov 02 11:36:37 UTC 2020","3","Antelope","test_accounthaveorders","","","","Запрос accounthaveorders: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест:
+            Шаг1: Запрос accounthaveorders с ошибкой в параметре login
+            Шаг2: Запрос accounthaveorders без параметра login
+                Ожидаемый результат:должен вернуться ответ 'result=-3&reason=invalid params (required params are login)&request_id='
+        Tear down: -
+         "
+"passed","Mon Nov 02 11:43:15 UTC 2020","Mon Nov 02 11:43:15 UTC 2020","1","Antelope","test_closeposition","","","","Запрос closeposition:  некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос closeposition с некорректным значением
+            Ожидаемый ответ:result=-3&reason=positions can not be closed&failed_position=asd&size=0&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:36:36 UTC 2020","Mon Nov 02 11:36:36 UTC 2020","0","Antelope","test_0","","","","Подготовка сервера к тестам. ","Описание теста:
+    Подготовка сервера к тестам:
+            -  Проверка наличия аккаунтов на сервере.
+            -  Проверка на них открытых ордеров/позиций.
+            -  Их удаление/закрытие.
+            -  Удаление аккаунтов.
+
+    Известные ошибки:
+        test_createaccount.py 6,7 - F
+        test_createaccountinrange.py 4- F
+        test_createaccountsinrange.py 5- F
+        test_deletependingorder.py 2 - F
+        test_getaccounts - 1
+        test_modifypending.py 5,6 - F
+        test_modifyposition.py 5 - F
+
+    "
+"passed","Mon Nov 02 11:36:36 UTC 2020","Mon Nov 02 11:36:36 UTC 2020","23","Antelope","test_accounthaveorders","","","","Запрос accounthaveorders: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 и пополняем ему баланс на 10.000.
+        Тест:
+            Шаг1: отправляем запрос accounthaveorders.
+                Ожидаемый результат: должен вернуться ответ 'result=1&reason=&login=100&orders=0&request_id='
+            Шаг2: открываем на аккаунте ордер
+            Шаг3:отправляем запрос accounthaveorders.
+                Ожидаемый результат:должен вернуться ответ 'result=1&reason=&login=100&orders=1&request_id='
+        Tear down: удаляем ордер и удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","1","Antelope","test_getmargininfoex","","","","Запрос getmargininfoex: в перечне есть некорректное значение","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfoex с некорректным значением в перечне
+            Ожидаемый результат:  result=1&reason=&users=2&balance=5378&equity=6219&margin=0&freeMargin=6219&credit=841&failed_logins=asd&size=50
+                                  100;balance;credit;equity;margin;freeMargin
+                                  101;balance;credit;equity;margin;freeMargin
+                                  &request_id='
+        Tear down:  удаление аккаунта
+    "
+"failed","Mon Nov 02 11:46:45 UTC 2020","Mon Nov 02 11:46:45 UTC 2020","4","Antelope","test_getordershistory","","","","Запрос getordershistory: в перечне несуществующий логин","
+    Описание шагов:
+        Setup: создаём аккаунты 100, 101
+            - Пополняем баланс
+            - Вбрасываем котировку
+            - Устанавливаем пендинг
+            - Вбрасываем котировку, которой активируем пендинг.
+        Тест:
+            Шаг1: отправляем запрос getordershistory с несуществющим 99 логином в перечне
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ: result=1&reason=&items=10&failed_login=99&size=1127
+                             100; -------
+                             &request_id=
+        Tear down:
+            - Удаление аккаунтов
+
+    "
+"failed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_createaccountinrange","","","","Запрос createaccountinrange: проверка работы.","
+    Описание шагов:
+        Setup: создаём 1 аккаунт с логином с 100 по 110.
+        Тест:
+            Шаг1: отправляем запрос getaccountinfo
+            Шаг2: проверяем ответ
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:49:22 UTC 2020","Mon Nov 02 11:49:22 UTC 2020","3","Antelope","test_sendmail","","","","Запрос sendmail: несуществуемый логин.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос sendmail - отправка сообщения с 1000 на несуществующий логин
+                Ожидаемый ответ: result=-4&reason=Send mail failed: MT_RET_ERR_NOTFOUND&request_id=
+            Шаг2: отправляем запрос sendmail - отправка сообщения с несуществующий логин на 1000
+                Ожидаемый ответ: result=1&reason=&request_id=
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:41:03 UTC 2020","Mon Nov 02 11:41:03 UTC 2020","6","Antelope","test_changebalance","","","","Запрос changebalance: Начисление и списание баланса.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: отправляю запрос changebalance на пополнение аккаунта на 10.000. Проверяю запросом getaccountbalance баланс аккаунта.
+            Шаг2: отправляю запрос changebalance на списание аккаунта 1.000. Проверяю запросом getaccountbalance баланс аккаунта.
+        Tear down: удаление аккаунта
+         "
+"failed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","12","Antelope","test_createaccountsinrange","","","","Запрос createaccountsinrange: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунты с 100 по 110.
+        Тест:
+            Шаг1: отправляем запрос getaccountinfo, запрашиваем информацию по логину рандомному логину из диапазона 100-110.
+            Шаг2: проверяем ответ
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","5","Antelope","test_changepassword","","","","Запрос changepassword: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: Создаём аккаунт 100.
+        Тест: отправляем запрос о смене пароля на 100 аккаунт и проверяем ответ.
+            Шаг1: запрос changepassword с ошибкой в login
+            Шаг2: запрос changepassword с ошибкой в pass
+            Шаг3: запрос changepassword с ошибкой в investor
+            Шаг4: запрос changepassword без login
+            Шаг5: запрос changepassword без pass
+            Шаг6: запрос changepassword без investor
+            Ожидаемый результат: result=-3&reason=invalid params (required params are login, pass, investor)&request_id=
+    "
+"passed","Mon Nov 02 11:36:52 UTC 2020","Mon Nov 02 11:36:52 UTC 2020","7","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: Начисление и списание баланса - перечень","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+        Шаг1: отправляю запрос bulkchangebalance на пополнение аккаунта 10.000.
+        Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;10000;xxxxxx;1
+                        101;10000;xxxxxx;1
+                        &failed_logins=&request_id= ""
+        Шаг2: отправляю запрос bulkchangebalance на списание c аккаунта 10.000.
+        Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;0;xxxxx;1
+                        101;0;xxxxxx;1
+                        &failed_logins=&request_id= ""
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","2","Antelope","test_modifyaccount","","","","Запрос modifyaccount: несуществующая группа.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: запрос modifyaccount с group='allure.title'
+            Ожидаемый результат: result=-4&reason=Unable update user, ret: MT_RET_ERR_PERMISSIONS&request_id=
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","9","Antelope","test_list","","","","Запрос list: проверка работы.","
+    Описание шагов:
+        Setup: -
+        Тест: у запроса нет параметров.Возвращает список групп с сервера.
+        Ожидаемый ответ: ""result=1&reason=&actions=accounthaveorders,addquote,balancefix,bulkchangebalance,bulkchangecredit,bulkmodifyaccount,bulkmodifydeal,changedealcommission,changebalance,changecredit,changepassword,accounthavepositions,checkpassword,closeposition,createaccount,createaccountinrange,createaccountsinrange,creategroup,deleteaccount,deletependingorder,deletepluginvalue,delay,echo,getaccountbalance,getaccountinfoex,getaccountinfo,getaccounts,getaccountswithpl,getallbalances,getbalancesoperations,getcharthistory,getdealshistory,getgroupallowedsymbols,getgroup,getgroups,getjournal,getleverageandgroup,getmargininfo,getopenpositionsforlogin,getopenpositions,getdealsforloginwithlimit,getordershistory,getpendingorders,getpl,getplugin,getloginsbygroup,getmargininfoex,getsymbols,gettradingvolume,getusersonline,getversion,info,list,modifypending,openpending,pumping,modifyaccount,modifygroup,modifyposition,openorder,sendmail,servertime,splittingposition,transferbalance,updatepluginvalue&request_id=""
+
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountinfo","","","","Запрос getaccountinfo: несуществующий логин.","
+    Описание шагов:
+        Setup: не требуется
+        Тест: отправляем запрос getaccountinfo, запрашиваем информацию по несуществующиму логину
+            Ожидаемый ответ: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:48:39 UTC 2020","Mon Nov 02 11:48:39 UTC 2020","106","Antelope","test_modifypending","","","","Запрос modifypending: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+             - вбрасываем котировку
+             - открываем позицию
+        Тест:
+            Шаг1: Генерируем случайные price, sl и tp для
+            Шаг2: меняем price, sl и tp с помощью modifypending
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными в modifyposition данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:36:51 UTC 2020","Mon Nov 02 11:36:51 UTC 2020","2","Antelope","test_balancefix","","","","Запрос balancefix: в перечне только несуществующие и некорректные значения.","
+        Описание шагов:
+            Setup: не требуется.
+            Тест: отправляем запросом balancefix с logins=asd;12.
+            Ожидаемый результат:
+            Tear down: -
+    "
+"passed","Mon Nov 02 11:41:06 UTC 2020","Mon Nov 02 11:41:06 UTC 2020","4","Antelope","test_changecredit","","","","Запрос changecredit: некорректные обязательные параметры или их отсутствие.","  Описание теста: запрос с некорректными параметрами.
+    Ожмдаемый ответ: WIK возвращает ошибку
+
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: ошибка в параметре login
+            Шаг2: ошибка в параметре value
+            Шаг3: ошибка в параметре comment
+            Шаг4: отсутствует параметр comment
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:49:07 UTC 2020","Mon Nov 02 11:49:07 UTC 2020","3","Antelope","test_openorder","","","","Запрос openorder: некорректные volume.'Volume exceeds limits: min 100, max 1000000, step 100' ","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос openorder с volume < 100
+            Шаг2: отправляем запрос openorder с volume > 1000000
+            Шаг3: отправляем запрос openorder с volume = 150 [step 100]
+            Ожидаемый ответ: result=-3&reason=Volume exceeds limits: min 100, max 1000000, step 100&request_id=
+            /возвращается некорректный овтет: result=InvalidIncomingParameters&reason=Volume exceeds limits: min 100, max 1000000, step 100&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:17 UTC 2020","Mon Nov 02 11:43:17 UTC 2020","2","Antelope","test_createaccount","","","","Запрос createaccount: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляем запрос createaccount с login=asd.
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountinfoex","","","","Запрос getaccountinfoex: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: не требуется
+        Тест: отправляем запрос getaccountinfoex с некоррекными данными в параметре login
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getloginsbygroup","","","","Запрос getloginsbygroup: несуществующая группа.","
+    Описание шагов:
+        Setup:
+        Тест: отправляем запрос getloginsbygroup с несуществующей группой
+        Ожидаемый результат: result=-4&reason=""Unable to get group 'asdasdasd': MT_RET_ERR_NOTFOUND""&request_id=
+    "
+"passed","Mon Nov 02 11:43:39 UTC 2020","Mon Nov 02 11:43:39 UTC 2020","3","Antelope","test_getbalancesoperations","","","","Запрос getbalancesoperations: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getbalancesoperations с некорректным значением в login
+            Шаг2: отправляем запрос getbalancesoperations с некорректным значением в from
+            Шаг3: отправляем запрос getbalancesoperations с некорректным значением в to
+        Ожидаемый ответ: 'result=-3&reason=parsing_problem&request_id='
+    "
+"passed","Mon Nov 02 11:43:32 UTC 2020","Mon Nov 02 11:43:32 UTC 2020","13","Antelope","test_getallbalances","","","","Запрос getallbalances: проверка работы.","
+    Описание шагов:
+        Setup: -
+        Тест: у запроса нет параметров.Возвращает список групп с сервера.
+        Ожидаемый ответ: ""result=1&reason=&size=15578.....
+                999;1
+                1000;-21.16
+                1300;0
+                1301;300
+                1302;9599.8
+                1303;501.27
+
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:43:39 UTC 2020","Mon Nov 02 11:43:39 UTC 2020","4","Antelope","test_getbalancesoperations","","","","Запрос getbalancesoperations: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getbalancesoperations с ошибкой в параметре login
+            Шаг2: отправляем запрос getbalancesoperations с ошибкой в параметре from
+            Шаг3: отправляем запрос getbalancesoperations с ошибкой в параметре to
+            Шаг4: отправляем запрос getbalancesoperations без параметра login
+            Шаг5: отправляем запрос getbalancesoperations без параметра from
+            Шаг6: отправляем запрос getbalancesoperations без параметра to
+        Ожидаемый ответ: 'result=-3&reason=invalid params (required params are login, from, to)&request_id=
+
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","2","Antelope","test_getaccountbalance","","","","Запрос getaccountbalance: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: запрос getaccountbalance с ошибкой в параметре login
+            Шаг2: запрос getaccountbalance без параметра login
+                Ожидаемый ответ: result=-3&reason=invalid params (required params are login)&request_id=
+        Tear down: -
+    "
+"failed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","3","Antelope","test_getaccountinfoex","","","","Запрос getaccountinfoex: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 с заполненной карточкой.
+        Тест: отправляем запрос getaccountinfoex, запрашиваем информацию по логину 100.
+            Ожидаемый ответ: result=1&reason=&login=100&name=QA&email=email&group=demo\demoforex&leverage=200&regdate=1574254685&country=country&state=state&address=address&phone=phone&city=city&zipcode=zipcode&balance=1000&comment=comment&free_margin=1000&opened_positions=0&agent=1000&lastdate=1574254685&id=id&enable=1&enable_trading=1&enable_change_password=1&enable_trailing_stops=1&enable_one_time_password=1&enable_trading_by_expert_adv=1&enable_web_api_connection=1&enable_reports=1&change_password_at_next_login=1&sponsored_virtual_host=0&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","4","Antelope","test_creategroup","","","","Запрос creategroup: проверка работы.","
+    Описание шагов:
+        Setup: Делаем проверку по имени группы аккаунта - есть ли он на сервере добавляем в конце 1 и проверяем до тех пор, пока группы не будет на сервере.
+        Тест: отправляем запрос getgroup, запрашиваем информацию по группе. Далее сравниваем полученную информацию с помощью 'assert'
+
+       !!! Группа не удаляется !!!"
+"failed","Mon Nov 02 11:43:39 UTC 2020","Mon Nov 02 11:43:39 UTC 2020","3","Antelope","test_getbalancesoperations","","","","Запрос getbalancesoperations: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - расчитываем from-to.
+        Тест: отправляем запрос getbalancesoperations
+        Ожидаемый ответ:result=1&reason=&login=100&size=46
+                            1576810;819;1574416902;test_accounthaveorders
+                            &request_id=
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","9","Antelope","test_createaccountinrange","","","","Запрос createaccountinrange: занятый диапазон.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: заполняем диапазон аккаунтов с 100 по 105 запросом createaccountsinrange
+            Шаг2: отправляем запрос createaccountinrange на создание аккаунтов с 100 по 105.
+            Шаг3: Проверяем ответ
+            Ожидаемый ответ: result=-3&reason=unable to create account in range&request_id=
+        Tear down: удаление аккаунтов
+        "
+"passed","Mon Nov 02 11:50:37 UTC 2020","Mon Nov 02 11:50:37 UTC 2020","2","Antelope","test_transferbalance","","","","Запрос transferbalance: пустой комментарий.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,103.
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг1: отправляем запрос transferbalance c пустым комментарием from_comment
+            Шаг2: отправляем запрос transferbalance c пустым комментарием receiver_comment
+            Ожидаемый ответ: result=-3&reason=comment is empty&request_id=
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","2","Antelope","test_changepassword","","","","Запрос changepassword: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: Создаём аккаунт 100.
+        Тест: отправляем
+            Шаг1: запрос changepassword с ошибкой в login
+            Шаг2: запрос changepassword с ошибкой в investor
+                Ожидаемый результат: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","8","Antelope","test_getgroupallowedsymbols","","","","Запрос getgroupallowedsymbols: проверка работы.","
+    Описание шагов:
+        Setup: создаём новую группу.
+        Тест: отправляем запрос getgroupallowedsymbols, запрашиваем информацию по группе.
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:45:10 UTC 2020","Mon Nov 02 11:45:10 UTC 2020","4","Antelope","test_getdealshistory","","","","Запрос getdealshistory: в перечне есть некорректное значение.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+        Тест:
+            Шаг1: отправляем запрос gотправляем запрос getdealshistory с некорректным значением в перечне
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=1&reason=&failed_logins=asd&users=2&size=180
+                            100;1578873;;0;-;10000;0;1574856889;0;test_getdealshistory;0;-;2;0;0;0;1000;0;0;0;2;;0;;0;0;0;0;0;0;2;0;0;0
+                            &request_id=
+            Шаг3: отправляем запрос gотправляем запрос getdealshistory с некорректным значением и несуществующим логином
+            Шаг4: проверка ответа
+            Ожидаемый ответ: ""result=-4&reason=&failed_login=10;asd&users=2&size=0&request_id=""
+        Tear down:- удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:48:38 UTC 2020","Mon Nov 02 11:48:38 UTC 2020","13","Antelope","test_modifygroup","","","","Запрос modifygroup: с некорректными данными в необязательном параметрах.","
+        Описание шагов:
+            Setup: Создаём группу.
+            Тест:
+                Шаг1: запрос modifygroup с default_leverage = 'asd'
+                Шаг2: запрос modifygroup с default_deposit = 'asd'
+                Шаг3: запрос modifygroup с send_copies_to_support_email = 'asd'
+                Шаг4: запрос modifygroup с generate_daily_reports = 'asd'
+                Шаг5: запрос modifygroup с margin_call = 'asd'
+                Шаг6: запрос modifygroup с margin_mode = 'asd'
+                Шаг7: запрос modifygroup с stop_out_level = 'asd'
+                Шаг8: запрос modifygroup с news = 'asd'
+                Шаг9: запрос modifygroup с annual_interest_rate = 'asd'
+                Шаг10: запрос modifygroup с enable_charge_of_swaps = 'asd'
+                Шаг11: запрос modifygroup с risk_management = 'asd'
+                Шаг12: запрос modifygroup с margin_type = 'asd'
+                Шаг13: запрос modifygroup с enable_connections = 'asd'
+                Шаг14: запрос modifygroup с news>2
+                Шаг15: запрос modifygroup с margin_mode>2
+                Шаг16: запрос modifygroup с margin_type>2
+            Ожидаемый результат: result=1
+        !!! Группа не удаляется !!!
+    "
+"passed","Mon Nov 02 11:36:53 UTC 2020","Mon Nov 02 11:36:53 UTC 2020","2","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangebalance на пополнение аккаунта на 10.000 с logins=asd.
+                Ожидаемый ответ: result=-3&reason=&failed_logins=asd&request_id=
+            Шаг2: отправляю запрос bulkchangebalance на пополнение аккаунта на 10.000 с value=asd.
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+
+        Tear down: удаление аккаунта
+
+    "
+"passed","Mon Nov 02 11:47:02 UTC 2020","Mon Nov 02 11:47:02 UTC 2020","3","Antelope","test_getpendingorders","","","","Запрос getpendingorders: некорректные значения в параметрах.","
+    Описание шагов:
+        Тест:
+            Шаг1: Отправляем запрос getopenpositionsforlogin с ошибкой в параметре login
+            Шаг2: Отправляем запрос getopenpositionsforlogin без параметра login
+                Ожидаемый ответ: result=-3&reason=invalid params (required params are login)&request_id=
+        "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getmargininfo","","","","Запрос getmargininfo: в перечне есть некорректное значение","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfo с некорректным значением в перечне
+            Ожидаемый результат:  result=1&reason=&users=2&balance=5378&equity=6219&margin=0&freeMargin=6219&credit=841&failed_login=asd&size=50
+                                  100;balance;credit;equity;margin;freeMargin
+                                  101;balance;credit;equity;margin;freeMargin
+                                  &request_id='
+        Tear down:  удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:53 UTC 2020","Mon Nov 02 11:36:53 UTC 2020","5","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: ошибка в параметре login
+            Шаг2: ошибка в параметре value
+            Шаг3: ошибка в параметре comment
+            Шаг4: отсутствует параметр comment
+            Шаг5: отсутствует параметр value
+            Шаг6: отсутствует параметр login
+        Ожидаемый ответ: result=-3&reason=invalid params (required params are logins (separated by semicolon), value, comment)&request_id=
+        Tear down: удаление аккаунта
+
+    "
+"failed","Mon Nov 02 11:38:37 UTC 2020","Mon Nov 02 11:38:37 UTC 2020","5","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal: проверка работы, перечень.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрсоом getdealshistory находим номер нужной сделки.
+        Тест:
+            Шаг1: отправляем запрос на изменение данных о сделках
+            Шаг2: запрашиваем историю по необходимой сделке и сверяем данные
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","12","Antelope","test_createaccountsinrange","","","","Запрос createaccountsinrange: короткий пароль.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountsinrange с коротким инвесторским паролем password_investor='q'.
+            Шаг2: отправляем запрос createaccountsinrange с коротким паролем password='q3'.
+            Ожидаемый ответ: result=-3&reason=unable to create any accounts in range&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:48:58 UTC 2020","Mon Nov 02 11:48:58 UTC 2020","3","Antelope","test_modifyposition","","","","Запрос modifyposition: некорректные значения.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос modifyposition с некорректным значением в параметре position
+            Шаг2: отправляем запрос modifyposition с некорректным значением в параметре sl
+            Шаг3: отправляем запрос modifyposition с некорректным значением в параметре tp
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:49:07 UTC 2020","Mon Nov 02 11:49:07 UTC 2020","6","Antelope","test_openorder","","","","Запрос openorder: на аккаунте недостаточно средств ","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг1: списываем баланс 100 аккаунта
+            Шаг2: отправляем запрос openorder
+            Шаг3: проверяем ответ
+            Ожидаемый ответ: result=-3&reason=Failed to open order&orderid=0&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:49:22 UTC 2020","Mon Nov 02 11:49:22 UTC 2020","3","Antelope","test_sendmail","","","","Запрос sendmail: некоррекнтное значение.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос sendmail с некорректным значением в параметре to_login
+            Шаг2: проверка ответа
+            Шаг3: отправляем запрос sendmail с некорректным значением в параметре from_login
+            Шаг4: проверка ответа
+
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:49:19 UTC 2020","Mon Nov 02 11:49:20 UTC 2020","1016","Antelope","test_openpending","","","","Запрос openpending: опциональные параметры price/sl/tp.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос openpending sl>price при cmd=2
+            Шаг2: отправляем запрос openpending sl<price при cmd=3
+            Шаг3: отправляем запрос openpending sl=price
+            Шаг4: отправляем запрос openpending tp>price при cmd=3
+            Шаг5:  отправляем запрос openpending tp<price при cmd=2
+            Шаг6:  отправляем запрос openpending tp=price
+            Шаг7: отправляем запрос openpending sl=price=tp
+            Ожидаемый ответ: result=-3&reason=Failed to open order&orderid=0&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","2","Antelope","test_modifyaccount","","","","Запрос modifyaccount: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: передаем запрос modifyaccount с ошибкой в параметре login
+            Шаг2: передаем запрос modifyaccount без параметра login
+            Ожидаемый результат: result=-3&reason=invalid params (required params are login)&request_id=
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:43:43 UTC 2020","Mon Nov 02 11:43:44 UTC 2020","1003","Antelope","test_getcharthistory","","","","Запрос getcharthistory: пустая история.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос servertime - значение from
+            Шаг2: отправляем запрос servertime - значение to
+            Шаг3: отправляем запрос getcharthistory
+            Шаг4: проверяем ответ
+            Ожмдаемый ответ: result=1&reason=&count=4&size=0&request_id=
+            /Приходит некорректный ответ: result=-4&reason=Unable to request chart-bars for symbol 'GBPUSD': MT_RET_OK_NONE&request_id=
+        Tear down: -
+    "
+"failed","Mon Nov 02 11:50:17 UTC 2020","Mon Nov 02 11:50:22 UTC 2020","5013","Antelope","test_transferbalance","","","","Запрос transferbalance: проверка работы: перевод средств с одного аккаунта на два аккаунта, разные валюты.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,103 - USD,105-EUR.
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг0: вбрасываем котировку EURUSD bid=0.5000, ask=0.5000
+            Шаг1: запрос servertime - параметр from для getbalancesoperations
+            Шаг2: отправляем запрос transferbalance на перевод средств с 100 аккаунта на 103 и 105 суммарно 100$
+            Шаг3: проверка ответа
+            Шаг4: запрос servertime - параметр to для getbalancesoperations
+            Шаг5: Запрос getbalancesoperations для from_logins - 100 аккаунта
+            Шаг6: проверяем данные
+            Шаг7: Запрос getbalancesoperations для receiver_logins - 103 аккаунта
+            Шаг8: проверяем данные
+            Шаг9: Запрос getbalancesoperations для receiver_logins - 105 аккаунта
+            Шаг10: проверяем данные
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:38:43 UTC 2020","Mon Nov 02 11:38:43 UTC 2020","2","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal: несуществующая сделка.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос bulkmodifydeal с несуществующими данными в deals
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ: result=-4&reason=&size=42&failed_deals=7894561230&request_id=
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","1","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount: несуществующий аккаунт.","
+    Описание шагов:
+        Setup: -
+        Тест: отправляем запрос bulkmodifyaccount, запрашиваем информацию по логину 100. Далее сравниваем полученную информацию с помощью 'assert'
+        Ожидаемый ответ: ""result=-4&reason=&size=42&failed_logins=100&request_id= ""
+        Tear down: -
+
+   "
+"passed","Mon Nov 02 11:49:05 UTC 2020","Mon Nov 02 11:49:06 UTC 2020","1009","Antelope","test_openorder","","","","Запрос openorder: некорректные cmd (cmd>1).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг0: вбрасываем котировку
+            Шаг1: отправляем запрос openorder с cmd = 2
+            Шаг2: отправляем запрос openorder с cmd = 3
+            Шаг3: отправляем запрос openorder с cmd = 4
+            Шаг4: отправляем запрос openorder с cmd = 5
+            Шаг5: отправляем запрос openorder с cmd = 2 с параметром price
+            Шаг6: отправляем запрос openorder с cmd = 3 с параметром price
+            Шаг7: отправляем запрос openorder с cmd = 4 с параметром price
+            Шаг8: отправляем запрос openorder с cmd = 5 с параметром price
+            Ожидаемый ответ: result=-3&reason=parsing_problem&orderid=0&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:36:54 UTC 2020","Mon Nov 02 11:36:54 UTC 2020","5","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: в перечне несуществующий аккаунт.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangecredit на пополнение аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&failed_logins=99&size=36
+                        100;10000;xxxxxx;1
+                        101;10000;xxxxxx;1
+                        &request_id= ""
+            Шаг2: отправляю запрос bulkchangecredit в перечне только не существующие логины
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:36:47 UTC 2020","Mon Nov 02 11:36:47 UTC 2020","3","Antelope","test_addquote","","","","Запрос addquote: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -не требуется
+        Тест:
+            Шаг1: отправляем запрос addquote с некорректным значением в bid
+            Шаг2: отправляем запрос addquote с некорректным значением в ask
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","3","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: некорректные значения.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume с некорректным значением в параметре from
+            Шаг2: отправляем запрос gettradingvolume с некорректным значением в параметре to
+            Ожидаемый ответ: ""result=-3&reason=parsing_problem&request_id=""
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:46:47 UTC 2020","Mon Nov 02 11:46:47 UTC 2020","2","Antelope","test_getordershistory","","","","Запрос getordershistory: некорректное значение.","
+    Описание шагов:
+        Setup:-
+        Тест:
+            Шаг1: отправляем запрос getordershistory с некорректным значением логина
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ:""""result=-3&reason=&items=10&failed_login=asd&size=0&request_id=""""
+        Tear down: -
+
+    "
+"passed","Mon Nov 02 11:50:32 UTC 2020","Mon Nov 02 11:50:32 UTC 2020","6","Antelope","test_transferbalance","","","","Запрос transferbalance: несуществующие значения.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,101.
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг1: отправляем запрос transferbalance на перевод средств с 100 аккаунта на 99 +100$. (99 аккаунта не существует)
+            Шаг2: отправляем запрос transferbalance на перевод средств с 99 аккаунта на 101 +100$. (99 аккаунта не существует)
+            Ожидаемый ответ: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:47:01 UTC 2020","Mon Nov 02 11:47:01 UTC 2020","3","Antelope","test_getordershistory","","","","Запрос getordershistory: некорректное значение в параметрах from и to.","
+    Описание шагов:
+        Setup:-
+        Тест:
+            Шаг1: отправляем запрос getordershistory с некорректным значением параметра from
+            Шаг2: Проверяем ответ
+            Шаг3: отправляем запрос getordershistory с некорректным значением параметра to
+            Шаг4: Проверяем ответ
+            Ожидаемый ответ:""result=-3&reason=parsing_problem&request_id=""
+        Tear down: -
+
+    "
+"passed","Mon Nov 02 11:48:58 UTC 2020","Mon Nov 02 11:48:58 UTC 2020","2","Antelope","test_modifyposition","","","","Запрос modifyposition: несуществующая позиция.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос modifyposition с несуществующей позицией
+            Шаг2: проверяем ответ.
+            Ожидаемый ответ: result=-4&reason=Unable to get position 987654321: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:47:51 UTC 2020","Mon Nov 02 11:47:51 UTC 2020","2","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: несуществующий логин.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume с несуществующим логином
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=-4&reason=&users=1&size=63&failed_login=99&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:49:07 UTC 2020","Mon Nov 02 11:49:08 UTC 2020","1107","Antelope","test_openpending","","","","Запрос openpending: проверка работы запроса (buy limit).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг0: Генерируем случайные числа для параметров sl, tp, volume и price для buy limit
+            Шаг1: вбрасываем котировку
+            Шаг2: устанавливаем пендинг на 100 аккаунте запросом openpending
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:36:51 UTC 2020","Mon Nov 02 11:36:51 UTC 2020","3","Antelope","test_balancefix","","","","Запрос balancefix: некорректные обязательные параметры или их отсутствие.","
+        Описание шагов:
+            Setup: Создание аккаунтов с историей.
+            Тест:
+            Шаг1: отправляем запросом balancefix с ошибкой в параметре logins.
+            Шаг2: отправляем запросом balancefix без параметра logins
+                Ожидаемый результат: result=-3&reason=invalid params (required params are logins (separeted by semicolon))&request_id=
+            Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:36:47 UTC 2020","Mon Nov 02 11:36:47 UTC 2020","8","Antelope","test_addquote","","","","Запрос addquote: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -не требуется
+        Тест:
+            Шаг1: отправляем запрос addquote с ошибкой в параметре symbol
+            Шаг1: отправляем запрос addquote с ошибкой в параметре bid
+            Шаг1: отправляем запрос addquote с ошибкой в параметре ask
+            Шаг1: отправляем запрос addquote без параметра symbol
+            Шаг1: отправляем запрос addquote без параметра bid
+            Шаг1: отправляем запрос addquote без параметра ask
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are symbol, bid, ask)&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","2","Antelope","test_getpl","","","","Запрос getpl: несуществующий логин.","
+    Описание шагов:
+        Setup: -
+        Тест: отправляем запрос getpl с несуществующем логином
+        Ожидаемый результат:'result=-4&reason=Unable to get positions for login 100: MT_RET_ERR_NOTFOUND&request_id='
+
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:36:52 UTC 2020","Mon Nov 02 11:36:52 UTC 2020","5","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: в перечне некоррекнтное значение.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangebalance на пополнение аккаунта 10.000. в перечне некоррекнтное значение 'asd'
+            Ожидаемый ответ: ""result=1&reason=&failed_logins=asd&size=36
+                        100;10000;xxxxxx;1
+                        101;10000;xxxxxx;1
+                        &request_id= ""
+            Шаг2: отправляю запрос bulkchangebalance в перечне только asd;99 - некорректное значение и не существующий аккаунт
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:36:37 UTC 2020","Mon Nov 02 11:36:37 UTC 2020","15","Antelope","test_accounthaveorders","","","","Запрос accounthaveorders: некорректный тип данных в параметрах","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест:
+            Шаг1: Запрос accounthaveorders с login=asd
+                Ожидаемый результат:должен вернуться ответ 'result=-3&reason=parsing_problem&request_id='
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","3","Antelope","test_getgroup","","","","Запрос getgroup: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Тест:
+            Шаг1: отправляем запрос getgroup с ошибкой в параметре name
+            Шаг2: отправляем запрос getgroup без параметра name
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are name)&request_id=
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","3","Antelope","test_getleverageandgroup","","","","Запрос getleverageandgroup: проверка работы.","
+    Описание шагов:
+        Setup: создаем 1 аккаунт
+        Тест: у запроса нет параметров.Возвращает список групп с сервера.
+        Ожидаемый ответ: """"result=1&size=21321
+            1;demo\demoforex;200
+            ......""""
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","9","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount:  некорректные значения в необязательных параметрах.","
+    Описание шагов:
+        Setup: создаем 100 аккаунт
+        Тест:
+            Шаг1: отправляем запрос bulkmodifyaccount с некоректными данными в agent
+            Шаг2: отправляем запрос bulkmodifyaccount с некоректными данными в leverage
+            Шаг3*: отправляем запрос bulkmodifyaccount с некоректными данными в group (несуществующая группа)
+            Шаг4: отправляем запрос bulkmodifyaccount с некоректными данными в enable
+            Шаг5: отправляем запрос bulkmodifyaccount с некоректными данными в enable_change_password
+            Шаг6: отправляем запрос bulkmodifyaccount с некоректными данными в enable_read_only
+            Шаг7: отправляем запрос bulkmodifyaccount с некоректными данными в enable_daily_reports
+
+            Ожидаемый ответ: ""result=-3&reason=parsing_problem&request_id=""
+            Ожидаемый ответ шаг 3: result=-4&reason=Unable to get group 'asd': MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: удаляем акаунты
+    "
+"passed","Mon Nov 02 11:49:07 UTC 2020","Mon Nov 02 11:49:07 UTC 2020","3","Antelope","test_openorder","","","","Запрос openorder: некорректные значения в опциональных параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос openorder с некорректным значением sl
+            Шаг2: отправляем запрос openorder с некорректным значением price
+            Шаг3: отправляем запрос openorder с некорректным значением tp
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","3","Antelope","test_checkpassword","","","","Запрос checkpassword: несуществующий логин","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест: отправляем запрос о проверке пароля на 100 аккаунт и проверяем ответ
+            Ожидаемый результат: result=-4&reason=Incorrect password, ret: MT_RET_ERR_NOTFOUND&request_id=
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","3","Antelope","test_deleteaccount","","","","Запрос deleteaccount: проверка работы.","
+        Описание шагов:
+            Setup: создаём 100 аккаунт
+            Тест: отправляем запрос о удалении аккаунта и проверить запросом ""getaccountinfo"" - есть ли 100 аккаунт на сервере
+                Ожидаемый результат: result=-4&reason=Unable change password, ret: MT_RET_ERR_NOTFOUND&request_id=
+            "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","3","Antelope","test_deletependingorder","","","","Запрос deletependingorder: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - пополняем ему баланс на 10.000.
+            - открываем 2 отложенных ордера.
+        Тест:
+            Шаг1: удаляем один ордер запросом deletependingorder.
+            Шаг2: проверяем наличие ордера через запрос getpendingorders
+        Tear down: удаляем ордер и удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:50 UTC 2020","Mon Nov 02 11:36:51 UTC 2020","1004","Antelope","test_balancefix","","","","Запрос balancefix: в перечне есть некорректные значения.","
+        Описание шагов:
+            Setup: Создание аккаунтов с историей.
+            Тест: запросом balancefix восстанавливаем баланс аккаунта и сравниваем с изначальным (0).
+            Ожидаемый результат:result=1&reason=&failed_logins=asd&size=5
+                                10;
+                                11&request_id=
+            Tear down: - аккаунты удаляются
+    "
+"failed","Mon Nov 02 11:43:17 UTC 2020","Mon Nov 02 11:43:17 UTC 2020","12","Antelope","test_createaccount","","","","Запрос createaccount: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляем запрос getaccountinfo, запрашиваем информацию по логину 100. Далее сравниваем полученную информацию с помощью 'assert'
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getmargininfo","","","","Запрос getmargininfo: несуществующий логин.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getmargininfo с несуществующим логином
+            Ожидаемый результат: result=-4&reason=&users=0&size=0&failed_login=1&request_id=
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:46:05 UTC 2020","Mon Nov 02 11:46:05 UTC 2020","2","Antelope","test_getopenpositionsforlogin","","","","Запрос getopenpositionsforlogin: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getopenpositionsforlogin с ошибкой в параметре login.
+            Шаг2: отправляем запрос getopenpositionsforlogin с без параметра login.
+        Ожидаемый результат:должен вернуться ответ 'result=-3&reason=invalid params (required params are login)&request_id='
+
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountinfoex","","","","Запрос getaccountinfoex: несуществующий логин.","
+    Описание шагов:
+        Setup: не требуется
+        Тест: отправляем запрос getaccountinfoex, запрашиваем информацию по несуществующиму логину
+            Ожидаемый ответ: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: удаление аккаунта
+    "
+"failed","Mon Nov 02 11:46:31 UTC 2020","Mon Nov 02 11:46:31 UTC 2020","3","Antelope","test_getordershistory","","","","Запрос getordershistory: проверка работы - перечень","
+    Описание шагов:
+        Setup: создаём аккаунты 100, 101
+            - Пополняем баланс
+            - Вбрасываем котировку
+            - Устанавливаем пендинг
+            - Вбрасываем котировку, которой активируем пендинг.
+        Тест:
+            Шаг1: отправляем запрос getordershistory
+            Шаг2: Проверяем ответ
+        Tear down:
+            - Удаление аккаунтов
+
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","6","Antelope","test_getdealshistory","","","","Запрос getdealshistory: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+        Тест:
+            Шаг1: отправляем запрос getdealshistory с ошибкой в параметре login
+            Шаг2: отправляем запрос getdealshistory с ошибкой в параметре from
+            Шаг3: отправляем запрос getdealshistory с ошибкой в параметре to
+            Шаг4: отправляем запрос getdealshistory без параметра login
+            Шаг5: отправляем запрос getdealshistory без параметра from
+            Шаг6: отправляем запрос getdealshistory без параметра to
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are from, to, login)&request_id=
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:50:37 UTC 2020","Mon Nov 02 11:50:37 UTC 2020","2","Antelope","test_updatepluginvalue","","","","Запрос updatepluginvalue: несуществующий плагин.","
+        Описание шагов:
+            Тест: отправляем запрос updatepluginvalue c несуществующим именем плагна
+                Ожидаемый ответ: result=-4&reason=Unable to get plugin config: MT_RET_ERR_NOTFOUND&request_id=
+            "
+"passed","Mon Nov 02 11:49:07 UTC 2020","Mon Nov 02 11:49:07 UTC 2020","3","Antelope","test_openorder","","","","Запрос openorder: некорректные значения в обязательных параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос openorder с некорректным значением в login
+            Шаг2: отправляем запрос openorder с некорректным значением в cmd
+            Шаг3: отправляем запрос openorder с некорректным значением в volume
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:50:37 UTC 2020","Mon Nov 02 11:50:37 UTC 2020","9","Antelope","test_updatepluginvalue","","","","Запрос updatepluginvalue: проверка работы.","
+    Описание шагов:
+            Тест:
+                Шаг1: отправляем запрос updatepluginvalue на добавление параметра.
+                Шаг2: проверяем наличие нового параметра в конфиге запросом getplugin
+            "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountbalance","","","","Запрос getaccountbalance: некорректные значения в параметрах.","
+        Описание шагов:
+            Setup: -
+            Тест: запрос getaccountbalance с некорректным значением
+                Ожидаемый ответ: ""result=-3&reason=&failed_logins=asd&users=0&size=0&request_id=""
+            Tear down: -
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountinfo","","","","Запрос getaccountinfo: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: не требуется
+        Тест: отправляем запрос getaccountinfo с некоррекными данными в параметре login
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:03 UTC 2020","Mon Nov 02 11:46:04 UTC 2020","1006","Antelope","test_getopenpositionsforlogin","","","","Запрос getopenpositionsforlogin: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 и пополняем ему баланс на 10.000.
+        Тест:
+            Шаг1: отправляем запрос getopenpositionsforlogin.
+                Ожидаемый результат:должен вернуться ответ 'result=1&reason=&size=0&request_id='
+            Шаг2: открываем на аккаунте позицию
+            Шаг3:отправляем запрос getopenpositionsforlogin.
+                Ожидаемый результат:должен вернуться ответ 'result=1&reason=&size=537
+                                                    363795;1002;EURUSD;0;100;1566378007;0.04674;0;0;-39.26;-;;0'
+
+        Tear down: удаляем позиции и удаление аккаунта
+    "
+"passed","Mon Nov 02 11:45:27 UTC 2020","Mon Nov 02 11:45:27 UTC 2020","4","Antelope","test_getdealshistory","","","","Запрос getdealshistory: параметры from/to.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+        Тест:
+            Шаг1: отправляем запрос getdealshistory с from>to
+            Шаг2: проверяем ответ
+            Шаг3: отправляем запрос getdealshistory с from=to
+            Шаг4: проверяем ответ
+                Ожидаемый ответ: result=1&reason=&failed_logins=&users=1&size=0&request_id=
+            Шаг5: отправляем запрос getdealshistory с from=0
+            Шаг6: проверяем ответ
+        Tear down:- удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:48:53 UTC 2020","Mon Nov 02 11:48:53 UTC 2020","4","Antelope","test_modifypending","","","","Запрос modifypending: некорректные значения опционального параметра ","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос modifypending с некорректным значением в sl
+            Шаг2: отправляем запрос modifypending с некорректным значением в tp
+            Шаг3: отправляем запрос modifypending с некорректным значением в volume
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:41:05 UTC 2020","Mon Nov 02 11:41:05 UTC 2020","2","Antelope","test_changecredit","","","","Запрос changecredit: несуществующий аккаунт.","
+    Описание шагов:
+        Тест: отправляю запрос changecredit на пополнение несуществующего аккаунта на 10.000. Проверяем ответ.
+            Ожидаемый овтет: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&login=100&request_id=
+        "
+"passed","Mon Nov 02 11:41:03 UTC 2020","Mon Nov 02 11:41:03 UTC 2020","2","Antelope","test_changebalance","","","","Запрос changebalance: несуществующий аккаунт.","
+    Описание шагов:
+        Тест: отправлем запрос changebalance на пополнение несуществующего аккаунта
+            Ожидаемый ответ: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&login=100&request_id=
+         "
+"passed","Mon Nov 02 11:36:54 UTC 2020","Mon Nov 02 11:36:54 UTC 2020","2","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangecredit на пополнение аккаунта на 10.000 с logins=asd.
+            Ожидаемый ответ: result=-3&reason=&failed_logins=asd&request_id=
+            Шаг2: отправляю запрос bulkchangecredit на пополнение аккаунта на 10.000 с value=asd.
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+
+        Tear down: удаление аккаунта
+
+    "
+"passed","Mon Nov 02 11:36:53 UTC 2020","Mon Nov 02 11:36:53 UTC 2020","5","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: Начисление и списание кредита - один аккаунт","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangecredit на пополнение аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;10000;10000;1
+                        &failed_logins=&request_id= ""
+            Шаг2: отправляю запрос bulkchangecredit на списание c аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;0;10000;1
+                        &failed_logins=&request_id= ""
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","3","Antelope","test_checkpassword","","","","Запрос checkpassword: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: Создаём аккаунт 100.
+        Тест: отправляем
+            Шаг1: запрос checkpassword с ошибкой в login
+            Шаг2: запрос checkpassword с ошибкой в investor
+                Ожидаемый результат: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","4","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: ошибка в параметре login
+            Шаг2: ошибка в параметре value
+            Шаг3: ошибка в параметре comment
+            Шаг4: отсутствует параметр comment
+            Шаг5: отсутствует параметр value
+            Шаг6: отсутствует параметр login
+        Ожидаемый ответ: result=-3&reason=invalid params (required params are logins (separated by semicolon), value, comment)&request_id=
+        Tear down: удаление аккаунта
+
+
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","1","Antelope","test_info","","","","Запрос info: некорректные обязательные параметры или их отсутствие.","
+        Описание шагов:
+            Setup: -
+            Тест:
+            Шаг1: отправляем запрос info с ошибкой в параметре method
+            Шаг2: отправляем запрос info без параметра method
+                Ожидаемый результат: ""result=-3&reason=invalid params (required params are method)&request_id=""
+            Tear down: -
+            "
+"passed","Mon Nov 02 11:47:02 UTC 2020","Mon Nov 02 11:47:02 UTC 2020","1","Antelope","test_getpendingorders","","","","Запрос getpendingorders: некорректные значения в параметрах.","
+    Описание шагов:
+        Тест:Отправляем запрос getopenpositionsforlogin с некорректным параметром login
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        "
+"passed","Mon Nov 02 11:44:53 UTC 2020","Mon Nov 02 11:44:53 UTC 2020","3","Antelope","test_getdealshistory","","","","Запрос getdealshistory: некорректное значени.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос gотправляем запрос getdealshistory с некорректным значением
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=-3&reason=&failed_logins=asd&users=1&size=0&request_id=
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:49:19 UTC 2020","Mon Nov 02 11:49:19 UTC 2020","2","Antelope","test_openpending","","","","Запрос openpending: несуществующие значения.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Тест:
+            Шаг1: отправляем запрос openpending с несуществующим символом
+            Ожидаемый ответ: result=-4&reason=Unable to get symbol info: MT_RET_ERR_NOTFOUND&request_id=
+            Шаг2: отправляем запрос openpending с несуществующим логином
+            Ожидаемый ответ: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_delay","","","","Запрос delay: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+        Шаг1: отправляем запрос delay с ошибкой в праметере timeout
+        Шаг2: отправляем запрос delay без параметра timeout
+        Ожидаемый ответ: 'result=-3&reason=invalid params (required params are timeout)&request_id='
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getmargininfoex","","","","Запрос getmargininfoex: несуществующий логин.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getmargininfoex с несуществующим логином
+            Ожидаемый результат: 'result=-4&reason=&failed_logins=1&request_id=
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:44:35 UTC 2020","Mon Nov 02 11:44:36 UTC 2020","2","Antelope","test_getdealshistory","","","","Запрос getdealshistory: несуществующий логин.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос gотправляем запрос getdealshistory с несуществующим логином
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=-4&reason=&failed_logins=100&users=1&size=0&request_id=
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","15","Antelope","test_creategroup","","","","Запрос creategroup: некорректные значения в необязательных параметрах.","
+    Описание шагов:
+        Тест:
+        шаг1: запрос creategroup с margin_mode=asd
+        шаг2: запрос creategroup c default_deposit=5asd00
+        шаг3: запрос creategroup c send_copies_to_support_email=asd
+        шаг4: запрос creategroup с default_leverage=asd
+        шаг5: запрос creategroup с generate_daily_reports=asd
+        шаг6: запрос creategroup с margin_call=asd
+        шаг7: запрос creategroup с stop_out_level=asd
+        шаг8: запрос creategroup с news=asd
+        шаг9: запрос creategroup с use_swap=asd
+        шаг10: запрос creategroup с risk_management=asd
+        шаг11: запрос creategroup с margin_type=asd
+        шаг12: запрос creategroup с interestrate=asd
+        шаг13: запрос creategroup с enable_connections=asd
+        шаг14: запрос creategroup с send_emails=asd
+        шаг15: запрос creategroup с sendddddd_copies_to_support_email=1
+    Ожидаемый резльтат:  'result=-3&reason=parsing_problem&request_id='
+    "
+"passed","Mon Nov 02 11:36:54 UTC 2020","Mon Nov 02 11:36:54 UTC 2020","1","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: пустой комментарий.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangecredit на пополнение аккаунта на 10.000 с comment=''.
+            Ожидаемый ответ: result=-3&reason=comment is empty&request_id=
+        Tear down: удаление аккаунта
+
+     "
+"passed","Mon Nov 02 11:50:37 UTC 2020","Mon Nov 02 11:50:37 UTC 2020","2","Antelope","test_transferbalance","","","","Запрос transferbalance: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос transferbalance некорректное значение в параметре from_logins
+            Шаг2: отправляем запрос transferbalance некорректное значение в параметре receiver_logins
+            Шаг3: отправляем запрос transferbalance некорректное значение в параметре amount
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:48:41 UTC 2020","Mon Nov 02 11:48:41 UTC 2020","2","Antelope","test_modifypending","","","","Запрос modifypending: несуществующий ордер.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос modifypending с несуществующим ордером
+            Шаг2: проверяем ответ
+            Ожидаемый результат:result=-4&reason=Can't get order 123321: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","4","Antelope","test_changepassword","","","","Запрос changepassword: несуществующий логин.","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест: отправляем запрос о смене пароля на 100 аккаунт и проверяем ответ
+            Ожидаемый результат: result=-4&reason=Unable change password, ret: MT_RET_ERR_NOTFOUND&request_id=
+    "
+"passed","Mon Nov 02 11:48:58 UTC 2020","Mon Nov 02 11:48:58 UTC 2020","5","Antelope","test_modifyposition","","","","Запрос modifyposition: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос modifyposition с ошибкой в параметре position
+            Шаг2: отправляем запрос modifyposition с ошибкой в параметре sl
+            Шаг3: отправляем запрос modifyposition с ошибкой в параметре tp
+            Шаг4: отправляем запрос modifyposition без параметра position
+            Шаг5: отправляем запрос modifyposition без параметра sl
+            Шаг6: отправляем запрос modifyposition без параметра tp
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are position, sl, tp)&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:49:13 UTC 2020","Mon Nov 02 11:49:14 UTC 2020","1107","Antelope","test_openpending","","","","Запрос openpending: проверка работы запроса (sell limit).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг0: Генерируем случайные числа для параметров sl, tp, volume и price для sell limit
+            Шаг1: вбрасываем котировку
+            Шаг2: устанавливаем пендинг на 100 аккаунте запросом openpending
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","5","Antelope","test_getsymbols","","","","Запрос getsymbols: проверка работы запроса.","
+    Описание шагов:
+        Тест: у запроса нет параметров.
+        Ожидаемый результат:'result=1&reason=&symbolsCount=40&size=4268
+                            EURUSD;Euro vs US Dollar;EUR;0;5;0;30;0.01561;0.01561;-1.8E-05;-4.8E-05;100000;0;0;0; 0;0;100000;1E-05;EUR;-
+
+        Tear down:
+    "
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","2","Antelope","test_getpl","","","","Запрос getpl: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getpl с ошибкой в параметре login.
+            Шаг2: отправляем запрос getpl без параметра login.
+        Ожидаемый результат:'result=-3&reason=invalid params (required params are login (separated by ;))&request_id='
+
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:36:52 UTC 2020","Mon Nov 02 11:36:52 UTC 2020","5","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: Начисление и списание баланса - один аккаунт","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+        Шаг1: отправляю запрос bulkchangebalance на пополнение аккаунта 10.000.
+        Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;10000;10000;1
+                        &failed_logins=&request_id= ""
+        Шаг2: отправляю запрос bulkchangebalance на списание c аккаунта 10.000.
+        Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;0;10000;1
+                        &failed_logins=&request_id= ""
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","1","Antelope","test_getgroupallowedsymbols","","","","Запрос getgroupallowedsymbols: несуществующая группа.","
+    Описание шагов:
+        Setup: -.
+        Тест: отправляем запрос getgroupallowedsymbols с несуществующей группой
+        Ожидаемый ответ: 'result=-4&reason=Unable to get group 'tes': MT_RET_ERR_NOTFOUND&request_id='
+
+    "
+"passed","Mon Nov 02 11:43:13 UTC 2020","Mon Nov 02 11:43:14 UTC 2020","1004","Antelope","test_closeposition","","","","Запрос closeposition: проверка работы запроса - перечень позиций.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - пополняем ему баланс на 10.000.
+            - открываем 2 позиции.
+        Тест:
+            Шаг1: закрываем позицию запросом closeposition.
+            Шаг2: проверяем наличие ордера через запрос getopenpositionsforlogin
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","1","Antelope","test_createaccountsinrange","","","","Запрос createaccountsinrange: несуществующая группа.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountsinrange с несуществующей группой
+            Ожидаемый ответ: result=-4&reason=Unable to get group 'Test_Wik5_antelope_action_createaccountsinrange': MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: -
+        "
+"failed","Mon Nov 02 11:43:16 UTC 2020","Mon Nov 02 11:43:16 UTC 2020","2","Antelope","test_closeposition","","","","Запрос closeposition: параметр volume.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - пополняем ему баланс на 10.000.
+            - открываем 2 позиции.
+
+        Тест:
+            Шаг1: отправляем запрос closeposition c параметром volume > volume сделки
+            Шаг2: проверяем ответ на запрос
+            Ожидаемый ответ:""result=1&reason=&failed_position=asd&size=8
+                            pos1;
+                            &request_id="" (сделка закрыта)
+            Шаг3: проверяем сделку
+            Шаг4: отправляем запрос closeposition c параметром volume < volume сделки
+            Шаг5: проверяем ответ на запрос
+            Ожидаемый ответ:""result=1&reason=&failed_position=asd&size=8
+                            pos1;
+                            &request_id="" (сделка частично закрыта)
+            Шаг6: проверяем сделку
+            Шаг7: отправляем запросом closeposition с некорректным значением в параметре volume.
+            Ожмдаемый ответ: result=-3&reason=parsing_problem&request_id=
+
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:49:19 UTC 2020","Mon Nov 02 11:49:19 UTC 2020","7","Antelope","test_openpending","","","","Запрос openpending: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос openpending с ошибкой в параметре login
+            Шаг2: отправляем запрос openpending с ошибкой в параметре cmd
+            Шаг3: отправляем запрос openpending с ошибкой в параметре volume
+            Шаг4: отправляем запрос openpending с ошибкой в параметре symbol
+            Шаг5: отправляем запрос openpending без параметра login
+            Шаг6: отправляем запрос openpending без параметра cmd
+            Шаг7: отправляем запрос openpending без параметра volume
+            Шаг8: отправляем запрос openpending без параметра symbol
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are login, symbol, cmd, volume, price)&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:48:41 UTC 2020","Mon Nov 02 11:48:41 UTC 2020","4","Antelope","test_modifypending","","","","Запрос modifypending: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос modifypending с ошибкой в параметре orderid
+            Шаг2: отправляем запрос modifypending с ошибкой в параметре price
+            Шаг3: отправляем запрос modifypending без параметра orderid
+            Шаг4: отправляем запрос modifypending без параметра price
+            Ожидаемый результат: result=-3&reason=invalid params (required params are orderid, price)&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","8","Antelope","test_createaccountinrange","","","","Запрос createaccountinrange: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountinrange с ошибкой в параметре begin
+            Шаг2: отправляем запрос createaccountinrange с ошибкой в параметре end
+            Шаг3: отправляем запрос createaccountinrange с ошибкой в параметре group /
+            Шаг4: отправляем запрос createaccountinrange с ошибкой в параметре password_investor
+            Шаг5: отправляем запрос createaccountinrange с ошибкой в параметре password
+            Шаг6: отправляем запрос createaccountinrange с ошибкой в параметре name
+            Шаг7: отправляем запрос createaccountinrange без параметра begin
+            Шаг8: отправляем запрос createaccountinrange без параметра end
+            Шаг9: отправляем запрос createaccountinrange без параметра group
+            Шаг10: отправляем запрос createaccountinrange без параметра password_investor
+            Шаг11: отправляем запрос createaccountinrange без параметра password
+            Шаг12: отправляем запрос createaccountinrange без параметра name
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are begin, end, group, password_investor, password, name)&request_id=
+            /Возвращается не корректный ответ: result=1&reason=&login=100;101;102;103;104;105;106;107;108;109;110&request_id= (аккаунты не созданы)
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","3","Antelope","test_getgroupallowedsymbols","","","","Запрос getgroupallowedsymbols: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: Делаем проверку по имени группы аккаунта - есть ли он на сервере добавляем в конце 3 и проверяем до тех пор, пока группы не будет на сервере.
+        Тест:
+            Шаг1: Отправляем запрос getgroupallowedsymbols с ошибкой в параметре grp
+            Шаг2: Отправляем запрос getgroupallowedsymbols без параметра group
+        Ожидаемый ответ: result=-3&reason=invalid params (required params are group)&request_id=
+
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","3","Antelope","test_deleteaccount","","","","Запрос deleteaccount: некорректные обязательные параметры или их отсутствие.","
+        Описание шагов:
+            Setup: создаём 100 аккаунт
+            Тест:
+            Шаг1: отправляем запрос deleteaccount с ошибкой в параметре login
+            Шаг2: отправляем запрос deleteaccount без параметра login
+                Ожидаемый результат: result=-3&reason=invalid params (required params are login)&request_id=
+            "
+"passed","Mon Nov 02 11:44:53 UTC 2020","Mon Nov 02 11:44:53 UTC 2020","2","Antelope","test_getdealshistory","","","","Запрос getdealshistory: в перечне есть несуществующий логин.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+        Тест:
+            Шаг1: отправляем запрос gотправляем запрос getdealshistory с несуществующим логином в перечне
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=1&reason=&failed_logins=99&users=2&size=180
+                            100;1578873;;0;-;10000;0;1574856889;0;test_getdealshistory;0;-;2;0;0;0;1000;0;0;0;2;;0;;0;0;0;0;0;0;2;0;0;0
+                            &request_id=
+        Tear down:-
+    "
+"failed","Mon Nov 02 11:47:26 UTC 2020","Mon Nov 02 11:47:26 UTC 2020","8","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,101.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрашиваем время сервера для значений from и to
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume c значениями  from и to в период которых было отрыто 2 позиции
+            Шаг2: проверка ответа
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","5","Antelope","test_createaccountinrange","","","","Запрос createaccountinrange: короткий пароль.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountinrange с коротким инвесторским паролем password_investor='q'.
+            Шаг2: отправляем запрос createaccountinrange с коротким паролем password='q3'.
+            Ожидаемый ответ: result=-3&reason=Unable add user, ret: MT_RET_USR_INVALID_PASSWORD&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_deletependingorder","","","","Запрос deletependingorder: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос deletependingorder с ошибкой в параметре order
+            Шаг2: отправляем запрос deletependingorder без параметра order
+            Ожидаемый ответ: ""result=-3&reason=invalid params (required params are order (separated by semicolon))&request_id=""
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","1","Antelope","test_modifyaccount","","","","Запрос modifyaccount: несуществующий аккаунт.","
+    Описание шагов:
+        Тест:
+            Шаг1: Отправляем запрос на изменение несуществующего логина
+        Ожидаемый результат: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+    "
+"failed","Mon Nov 02 11:50:07 UTC 2020","Mon Nov 02 11:50:12 UTC 2020","5009","Antelope","test_transferbalance","","","","Запрос transferbalance: проверка работы: перевод средств с одного аккаунта на два аккаунта, разные валюты.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,105,106. - на 105,106 валюта EUR, на 100 - USD
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг0: вбрасываем котировку EURUSD bid=0.5000, ask=0.5000
+            Шаг1: запрос servertime - параметр from для getbalancesoperations
+            Шаг2: отправляем запрос transferbalance на перевод средств с 100 аккаунта на 105 100$
+            Шаг3: проверка ответа
+            Шаг4: запрос servertime - параметр to для getbalancesoperations
+            Шаг5: Запрос getbalancesoperations для from_logins - 100 аккаунта
+            Шаг6: проверяем данные
+            Шаг7: Запрос getbalancesoperations для receiver_logins - 105 аккаунта
+            Шаг8: проверяем данные
+            Шаг9: Запрос getbalancesoperations для receiver_logins - 106 аккаунта
+            Шаг10: проверяем данные
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","6","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount: проверка работы - перечень аккаунтов.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляем запрос bulkmodifyaccount, запрашиваем информацию по логину 100,101. Далее сравниваем полученную информацию с помощью 'assert'
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:43:16 UTC 2020","Mon Nov 02 11:43:16 UTC 2020","2","Antelope","test_closeposition","","","","Запрос closeposition: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос closeposition с ошибкой в параметре position
+            Шаг2: отправляем запрос closeposition без параметра position
+            Ожидаемый ответ:result=-3&reason=invalid params (required params are position (separated by semicolon))&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","5","Antelope","test_getmargininfo","","","","Запрос getmargininfo: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfo для одного аккаунта.
+            Ожидаемый результат: 'result=1&reason=&users=1&balance=4915&equity=5112&margin=0&freeMargin=5112&credit=197&failed_login=&size=25
+                                  login;balance;equity;margin;freeMargin;credit
+                                  &request_id='
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:33 UTC 2020","Mon Nov 02 11:46:33 UTC 2020","1","Antelope","test_getordershistory","","","","Запрос getordershistory: несуществующий логин","
+    Описание шагов:
+        Setup:-
+        Тест:
+            Шаг1: отправляем запрос getordershistory с несуществующим логином
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ:""result=-4&reason=&items=10&size=1127&failed_login=100&request_id=""
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:49:19 UTC 2020","Mon Nov 02 11:49:19 UTC 2020","3","Antelope","test_openpending","","","","Запрос openpending: некорректные volume.'Volume exceeds limits: min 100, max 1000000, step 100' ","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос openpending с volume < 100
+            Шаг2: отправляем запрос openpending с volume > 1000000
+            Шаг3: отправляем запрос openpending с volume = 150 [step 100]
+            Ожидаемый ответ: result=-3&reason=Volume exceeds limits: min 100, max 1000000, step 100&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","38","Antelope","test_info","","","","Запрос info: проверка работы.","
+        Описание шагов:
+            Setup: -
+            Тест: запрос возвращает информацию по запросу из txt файла.
+            Tear down: -
+            "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","8","Antelope","test_modifyaccount","","","","Запрос modifyaccount: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляем запрос getaccountinfo, запрашиваем информацию по логину 100. Далее сравниваем полученную информацию с помощью 'assert'
+        Tear down: удаление аккаунтов
+
+     "
+"passed","Mon Nov 02 11:36:38 UTC 2020","Mon Nov 02 11:36:38 UTC 2020","1","Antelope","test_accounthavepositions","","","","Запрос accounthavepositions: несуществующий аккаунт.","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест:
+            Шаг1: Запрос accounthavepositions с несуществующим аккаунтом
+                Ожидаемый результат:должен вернуться ответ 'result=-4&reason=Unable to get positions for login 100: MT_RET_ERR_NOTFOUND&login=100&request_id='
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:41:03 UTC 2020","Mon Nov 02 11:41:03 UTC 2020","1","Antelope","test_changebalance","","","","Запрос changebalance: пустой комментарий.","  Описание теста: запрос с пустым комментарием.
+    Ожмдаемый ответ: WIK возвращает ошибку
+
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляю запрос changebalance с пустым комментарием. Проверяем баланс аккаунта.
+              Ожидаемый ответ: result=-3&reason=comment is empty&request_id=
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","2","Antelope","test_getversion","","","","Запрос getversion: проверка работы.","
+    Описание шагов:
+        Setup: -
+        Тест: у запроса нет параметров. В ответе возвразает версию Web-Api
+        Ожидаемый ответ: result=1&reason=&version=1.2.9&request_id=*
+        *версия зависит от сборки. перед запуском теста данные необходимо заменить
+
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:50:37 UTC 2020","Mon Nov 02 11:50:37 UTC 2020","7","Antelope","test_transferbalance","","","","Запрос transferbalance: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос transferbalance с ошибкой в параметре from_logins
+            Шаг2: отправляем запрос transferbalance с ошибкой в параметре receiver_logins
+            Шаг3: отправляем запрос transferbalance с ошибкой в параметре amount
+            Шаг4: отправляем запрос transferbalance с ошибкой в параметре from_comment
+            Шаг5: отправляем запрос transferbalance с ошибкой в параметре receiver_comment
+            Шаг6: отправляем запрос transferbalance без параметра from_logins
+            Шаг7: отправляем запрос transferbalance без параметра receiver_logins
+            Шаг8: отправляем запрос transferbalance без параметра amount
+            Шаг9: отправляем запрос transferbalance без параметра from_comment
+            Шаг10: отправляем запрос transferbalance без параметра receiver_comment
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are receiver_logins, from_logins, amount, receiver_comment, from_comment)&request_id=
+            /Шаг 3-4 приходит некорректный ответ:
+        Tear down:
+            - Удаление аккаунта
+    "
+"failed","Mon Nov 02 11:48:38 UTC 2020","Mon Nov 02 11:48:38 UTC 2020","2","Antelope","test_modifygroup","","","","Запрос modifygroup: с MarginCall и StopOut.","
+    Описание шагов:
+        Setup: Создаём группу.
+        Тест:
+            Шаг1: запрос modifygroup с margin call<StopOut
+                Ожидаемый результат шаг1: result=-4&reason=Unable to update group test1: MT_RET_ERR_NOTFOUND&request_id=
+            Шаг2: запрос modifygroup с StopOut=MarginCall
+            Шаг3: запрос modifygroup с StopOut<MarginCall
+                Ожидаемый результат: result=1
+    "
+"passed","Mon Nov 02 11:48:41 UTC 2020","Mon Nov 02 11:48:41 UTC 2020","2","Antelope","test_modifypending","","","","Запрос modifypending: некорректное значение обязательных параметров.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос modifypending с некорректным значением в orderid
+            Шаг2: отправляем запрос modifypending с некорректным значением в price
+            Ожидаемый результат: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:45:44 UTC 2020","Mon Nov 02 11:45:44 UTC 2020","2","Antelope","test_getdealshistory","","","","Запрос getdealshistory: некорректные значения параметров","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+        Тест:
+            Шаг1: отправляем запрос getdealshistory с некорректным значением параметра from
+            Шаг2: проверяем ответ
+            Шаг3: отправляем запрос getdealshistory с некорректным значением параметра to
+            Шаг4: проверяем ответ
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+
+        Tear down:- удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:41:48 UTC 2020","Mon Nov 02 11:41:48 UTC 2020","1","Antelope","test_changedealcommission","","","","Запрос changedealcommission: несуществующая сделка.","Описание теста: проверка работы запроса.
+
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос на установление комиссии на несуществующей сделки
+            Шаг3: проверяем ответ
+                Ожидаемый ответ: result=-4&reason=Unable to get deal (ticket '11423413413'): MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:49:19 UTC 2020","Mon Nov 02 11:49:19 UTC 2020","3","Antelope","test_openpending","","","","Запрос openpending: некорректные значения в обязательных параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос openpending с некорректным значением в login
+            Шаг2: отправляем запрос openpending с некорректным значением в cmd
+            Шаг3: отправляем запрос openpending с некорректным значением в volume
+            Шаг4: отправляем запрос openpending с некорректным значением в price
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","1","Antelope","test_createaccountinrange","","","","Запрос createaccountinrange: несуществующая группа.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountinrange с несуществующей группой
+            Ожидаемый ответ: result=-3&reason=Unable to get group info: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:47:01 UTC 2020","Mon Nov 02 11:47:01 UTC 2020","5","Antelope","test_getordershistory","","","","Запрос getordershistory: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup:-
+        Тест:
+            Шаг1: отправляем запрос getordershistory с ошибкой в параметре logins
+            Шаг2: отправляем запрос getordershistory с ошибкой в параметре from
+            Шаг3: отправляем запрос getordershistory с ошибкой в параметре to
+            Шаг4: отправляем запрос getordershistory без параметра logins
+            Шаг5: отправляем запрос getordershistory без параметра from
+            Шаг6: отправляем запрос getordershistory без параметра to
+            Помле каждого шага делаем проверку ответа
+            Ожидаемый ответ:""result=-3&reason=invalid params (required params are from, to, logins)&request_id=""
+        Tear down: -
+
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","2","Antelope","test_getaccountinfo","","","","Запрос getaccountinfo: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: не требуется
+        Тест:
+            Шаг1: отправляем запрос getaccountinfo с ошибкой в параметре login
+            Шаг2: отправляем запрос getaccountinfo без параметра login
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are login)&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_deleteaccount","","","","Запрос deleteaccount: некорректные значения в параметрах.","
+        Описание шагов:
+            Setup: создаём 100 аккаунт
+            Тест: отправляем запрос deleteaccount с login=asd
+                Ожидаемый результат: result=-3&reason=parsing_problem&request_id=
+            "
+"passed","Mon Nov 02 11:49:06 UTC 2020","Mon Nov 02 11:49:07 UTC 2020","1005","Antelope","test_openorder","","","","Запрос openorder: несуществующие значения.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг0: вбрасываем котировку
+            Шаг1: отправляем запрос openorder с несуществующим символом
+            Ожидаемый ответ: result=-4&reason=Unable to get symbol info: MT_RET_ERR_NOTFOUND&request_id=
+            Шаг2: отправляем запрос openorder с несуществующим логином
+            Ожидаемый ответ: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:36:54 UTC 2020","Mon Nov 02 11:36:54 UTC 2020","1","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: несуществующий аккаунт","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляю запрос bulkchangecredit на пополнение аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&failed_logins=100&size=42
+                        &request_id= ""
+        Tear down: -
+         "
+"passed","Mon Nov 02 11:49:10 UTC 2020","Mon Nov 02 11:49:11 UTC 2020","1109","Antelope","test_openpending","","","","Запрос openpending: проверка работы запроса (buy stop).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг0: Генерируем случайные числа для параметров sl, tp, volume и price для buy stop
+            Шаг1: вбрасываем котировку
+            Шаг2: устанавливаем пендинг на 100 аккаунте запросом openpending
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:43:17 UTC 2020","Mon Nov 02 11:43:17 UTC 2020","5","Antelope","test_createaccount","","","","Запрос createaccount: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccount с nameee
+            Шаг2: отправляем запрос createaccount с groupp
+            Шаг3: отправляем запрос createaccount с passwordinvestor
+            Шаг4: отправляем запрос createaccount с pas
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are group, password_investor, password, name)&request_id=
+            /Возвращает: result=-3&reason=Данный ключ отсутствует в словаре.&request_id=
+        Tear down: - "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","2","Antelope","test_getaccountinfoex","","","","Запрос getaccountinfoex: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: не требуется
+        Тест:
+            Шаг1: отправляем запрос getaccountinfoex с ошибкой в параметре login
+            Шаг2: отправляем запрос getaccountinfoex без параметра login
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are login)&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:52 UTC 2020","Mon Nov 02 11:36:52 UTC 2020","2","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: несуществующий аккаунт","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляю запрос bulkchangebalance на пополнение аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&failed_logins=100&size=42
+                        &request_id= ""
+        Tear down: -
+         "
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","8","Antelope","test_getplugin","","","","Запрос getplugin: проверка работы.","
+    Описание шагов:
+        Тест:
+            Шаг1: отправляем запрос updatepluginvalue на добавление параметра.
+            Шаг2: проверяем наличие нового параметра в конфиге запросом getplugin
+    "
+"failed","Mon Nov 02 11:37:35 UTC 2020","Mon Nov 02 11:37:50 UTC 2020","15025","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal: проверка работы дополнительных параметров.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрсоом getdealshistory находим номер нужной сделки.
+        Тест:
+            Шаг1: отправляем запрос на изменение данных о сделке
+            Шаг2: запрашиваем историю по необходимой сделке и сверяем данные
+            Шаг3: отправляем запрос на изменение gateway_price - не отрабатывает
+            Шаг4: проверка установленных параметров
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getloginsbygroup","","","","Запрос getloginsbygroup: проверка работы.","
+    Описание шагов:
+        Setup:-
+        Тест: отправляем запрос getloginsbygroup по группе managersdministrators
+        Ожидаемый результат: result=1&reason=&logins=999,1000&request_id=
+    "
+"broken","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getgroup","","","","Запрос getgroup: проверка работы.","
+    Описание шагов:
+        Setup: Создаём новую группу
+        Тест: отправляем запрос getgroup, запрашиваем информацию по группе.
+    "
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","1","Antelope","test_getplugin","","","","Запрос getplugin: несуществующее имя плагина.","
+    Описание шагов:
+        Тест: отправляем запрос getplugin с несуществующим именем плагина
+        Ожидаемый ответ: result=-4&reason=Unable to get plugin config: MT_RET_ERR_NOTFOUND&request_id=
+    "
+"passed","Mon Nov 02 11:36:38 UTC 2020","Mon Nov 02 11:36:43 UTC 2020","5006","Antelope","test_addquote","","","","Запрос addquote: проверка работы запроса bid<ask.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 и пополняем ему баланс на 10.000.
+            Вбрасываем котировку и открываем ордер.
+        Тест:
+            Шаг1: отправляем запрос accounthaveorders. - првоеряем открылся ли ордер
+            Шаг2: вбрасываем котировку, что триггерит открытие ордера
+            Шаг3: отправляем запрос accounthaveorders. - првоеряем активировался ли ордер
+        Tear down: закрываем позицию и удаляем аккаунт
+    "
+"failed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:13 UTC 2020","1004","Antelope","test_closeposition","","","","Запрос closeposition: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - пополняем ему баланс на 10.000.
+            - открываем 2 позиции.
+        Тест:
+            Шаг1: закрываем позицию запросом closeposition.
+            Шаг2: проверяем наличие ордера через запрос getopenpositionsforlogin
+        Tear down: удаление аккаунта
+    "
+"failed","Mon Nov 02 11:48:35 UTC 2020","Mon Nov 02 11:48:35 UTC 2020","3","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: в перечне есть некорректное значение.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,101.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрашиваем время сервера для значений from и to
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume с некорректным значением в перечне
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=1&reason=&users=2&failed_login=asd&size=63
+                            login;order;symbol;price;close_price(-);profit;volume;open_time;close_time(-);conversation_price(-);comment;commission;commission_agent(-);action;profit_rate;dealer;entry
+                            &request_id=
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","2","Antelope","test_getplugin","","","","Запрос getplugin: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Тест:
+            Шаг1: отправляем запрос getplugin с ошибкой в паоаметре name
+            Шаг2: отправляем запрос getplugin без паоаметра name
+
+        Ожидаемый ответ: result=-3&reason=invalid params (required params are name)&request_id=
+    "
+"passed","Mon Nov 02 11:36:53 UTC 2020","Mon Nov 02 11:36:53 UTC 2020","6","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: Попытка списать в минус.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест: отправляю запрос bulkchangecredit на списание аккаунта 10.000.
+            Ожидаемый ответ: result=-4&reason=&failed_logins=1000&request_id=
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getmargininfo","","","","Запрос getmargininfo: проверка работы запроса - перечень.","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfo для двух аккаунтов.
+            Ожидаемый результат:  result=1&reason=&users=2&balance=5378&equity=6219&margin=0&freeMargin=6219&credit=841&failed_login=&size=50
+                                  login;balance;equity;margin;freeMargin;credit
+                                  &request_id='
+        Tear down:  удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","4","Antelope","test_checkpassword","","","","Запрос checkpassword: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: Создаём аккаунт 100.
+        Тест: отправляем запрос о смене пароля на 100 аккаунт и проверяем ответ.
+            Шаг1: запрос checkpassword с ошибкой в login
+            Шаг2: запрос checkpassword с ошибкой в pass
+            Шаг3: запрос checkpassword без login
+            Шаг4: запрос checkpassword без pass
+               Ожидаемый результат: result=-3&reason=invalid params (required params are login, pass)&request_id=
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getmargininfo","","","","Запрос getmargininfo: в перечне есть несуществующий логин","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfo для двух аккаунтов.
+            Ожидаемый результат:  result=1&reason=&users=2&balance=5378&equity=6219&margin=0&freeMargin=6219&credit=841&failed_login=99&size=50
+                                  login;balance;equity;margin;freeMargin;credit
+                                  &request_id='
+        Tear down:  удаление аккаунта
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","5","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume с ошибкой в параметре login
+            Шаг2:  отправляем запрос gettradingvolume с ошибкой в параметре from
+            Шаг3: отправляем запрос gettradingvolume с ошибкой в параметре to
+            Шаг4:  отправляем запрос gettradingvolume без параметра login
+            Шаг5:  отправляем запрос gettradingvolume без параметра from
+            Шаг6:  отправляем запрос gettradingvolume без параметра to
+            Ожидаемый ответ: ""result=-3&reason=invalid params (required params are login, from, to)&request_id=""
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountbalance","","","","Запрос getaccountbalance: проверка работы - перечень.","
+        Описание шагов:
+            Setup: Создание аккаунтов.
+            Тест: запросом getaccountbalance запрашиваем баланс аккаунтов
+            Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:48:38 UTC 2020","Mon Nov 02 11:48:38 UTC 2020","2","Antelope","test_modifygroup","","","","Запрос modifygroup: несуществующая группа.","
+    Описание шагов:
+        Setup: Выбираем группу, которой не существует на сервере.
+        Тест: отправляем запрос modifygroup для несуществующей группы
+            Ожидаемый результат: возвращается ошибка 'result=-4&reason=Unable to get group 'test123': MT_RET_ERR_NOTFOUND&request_id='
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountbalance","","","","Запрос getaccountbalance: проверка работы - один логин.","
+    Описание шагов:
+        Setup: Создание аккаунтов.
+        Тест: запросом getaccountbalance запрашиваем баланс аккаунта
+        Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:49:19 UTC 2020","Mon Nov 02 11:49:19 UTC 2020","3","Antelope","test_openpending","","","","Запрос openpending: некорректные cmd (cmd<2).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг1: вбрасываем котировку
+            Шаг2: отправляем запрос openpending с cmd=0
+            Шаг3: отправляем запрос openpending с cmd=1
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","1","Antelope","test_getmargininfo","","","","Запрос getmargininfo: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getmargininfo с некорректным значением в параметре логин
+            Ожидаемый результат: ""result=-3&reason=&users=0&size=0&failed_login=asd&request_id=""
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","1","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount: некорректные значения.","
+    Описание шагов:
+        Setup: -
+        Тест: тправляем запрос bulkmodifyaccount с login='asd'
+        Ожидаемый ответ: ""result=-3&reason=&size=42&failed_logins=asd&request_id= ""
+        Tear down: -
+
+   "
+"passed","Mon Nov 02 11:36:52 UTC 2020","Mon Nov 02 11:36:52 UTC 2020","5","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: в перечне несуществующий аккаунт.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangebalance на пополнение аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&failed_logins=99&size=36
+                        100;10000;xxxxxx;1
+                        101;10000;xxxxxx;1
+                        &request_id= ""
+        Шаг2: отправляю запрос bulkchangebalance в перечне только не существующие логины
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","1","Antelope","test_getaccountbalance","","","","Запрос getaccountbalance: несуществующий аккаунт.","
+        Описание шагов:
+            Setup: -
+            Тест: запрос getaccountbalance с несуществующим аккаунтом
+                Ожидаемый ответ: result=-4&reason=&failed_logins=100&users=0&size=0&request_id=
+            Tear down: -
+    "
+"passed","Mon Nov 02 11:36:49 UTC 2020","Mon Nov 02 11:36:50 UTC 2020","1008","Antelope","test_balancefix","","","","Запрос balancefix: в перечне есть несуществующий аккаунт.","
+        Описание шагов:
+            Setup: Создание аккаунтов с историей.
+            Тест: запросом balancefix восстанавливаем баланс аккаунта и сравниваем с изначальным (0).
+                Ожидаемый ответ: - result=1&reason=&failed_logins=12&size=5
+                                   10;
+                                   11&request_id=
+            Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","3","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount: в перечне несуществующий аккаунт.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: тправляем запрос bulkmodifyaccount с login='100;99' - 99 несуществующий аккаунт
+        Ожидаемый ответ: result=1&reason=&failed_logins=99&request_id='
+        Tear down: удаление аккаунтов
+
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","9","Antelope","test_createaccountsinrange","","","","Запрос createaccountsinrange: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountsinrange с ошибкой в параметре begin
+            Шаг2: отправляем запрос createaccountsinrange с ошибкой в параметре end
+            Шаг3: отправляем запрос createaccountsinrange с ошибкой в параметре group /
+            Шаг4: отправляем запрос createaccountsinrange с ошибкой в параметре password_investor
+            Шаг5: отправляем запрос createaccountsinrange с ошибкой в параметре password
+            Шаг6: отправляем запрос createaccountsinrange с ошибкой в параметре name
+            Шаг7: отправляем запрос createaccountsinrange без параметра begin
+            Шаг8: отправляем запрос createaccountsinrange без параметра end
+            Шаг9: отправляем запрос createaccountsinrange без параметра group
+            Шаг10: отправляем запрос createaccountsinrange без параметра password_investor
+            Шаг11: отправляем запрос createaccountsinrange без параметра password
+            Шаг12: отправляем запрос createaccountsinrange без параметра name
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are begin, end, group, password_investor, password, name)&request_id=
+            /Возвращается не корректный ответ: result=1&reason=&login=100;101;102;103;104;105;106;107;108;109;110&request_id= (аккаунты не созданы)
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_deletependingorder","","","","Запрос deletependingorder: несуществующий ордер","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос deletependingorder с несуществующим ордером
+            Шаг2: проверяем ответ
+            Ожидаемый ответ: ""result=-4&reason=&size=7&failed_order=363812&request_id=""
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:40:15 UTC 2020","Mon Nov 02 11:40:15 UTC 2020","2","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal:некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос bulkmodifydeal с ошибкой в параметре deals
+            Шаг2: отправляем запрос bulkmodifydeal без параметра deals
+
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are deal (separated by semicolon))&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:58 UTC 2020","Mon Nov 02 11:43:58 UTC 2020","24","Antelope","test_getdealsforloginwithlimit","","","","Запрос getdealsforloginwithlimit: проверка работы","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позиции
+        Тест:
+            Шаг1: отправляем запрос getdealsforloginwithlimit с start=0 и limit=2 (возвращается 2 сделки из истории)
+            Шаг2: отправляем запрос getdealsforloginwithlimit с start=0 и limit=3 (возвращается 3 сделки из истории)
+            Шаг3: отправляем запрос getdealsforloginwithlimit с start=0 и limit=4 (возвращается 4 сделки из истории)
+
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:41:05 UTC 2020","Mon Nov 02 11:41:05 UTC 2020","1","Antelope","test_changecredit","","","","Запрос changecredit: пустой комментарий.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляю запрос changecredit на пополнение аккаунта на 10.000 с пустым комментарием.
+            Ожидаемый ответ: result=-3&reason=comment is empty&request_id=
+        Tear down: удаление аккаунта
+
+    Перечень запросов, участвующих в тесте: getaccountinfo, getopenpositionsforlogin, closeposition, createaccount, changecredit, deleteaccount. "
+"passed","Mon Nov 02 11:36:38 UTC 2020","Mon Nov 02 11:36:38 UTC 2020","1","Antelope","test_accounthavepositions","","","","Запрос accounthavepositions: некорректный тип данных в параметрах","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест:
+            Шаг1: Запрос accounthavepositions с login=asd
+                Ожидаемый результат:должен вернуться ответ 'result=-3&reason=parsing_problem&request_id='
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:11 UTC 2020","Mon Nov 02 11:43:11 UTC 2020","4","Antelope","test_changedealcommission","","","","Запрос changedealcommission: некорректные обязательные параметры или их отсутствие.","Описание теста: проверка работы запроса.
+
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос changedealcommission с ошибкой в параметре deal
+            Шаг2: отправляем запрос changedealcommission с ошибкой в параметре value
+            Шаг3: отправляем запрос changedealcommission без параметра deal
+            Шаг4: отправляем запрос changedealcommission без параметра value
+                Ожидаемый ответ: result=-3&reason=invalid params (required params are deal, value)&request_id=
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:38 UTC 2020","1013","Antelope","test_modifygroup","","","","Запрос modifygroup: проверка работы.","""
+Описание шагов:
+    Setup: - выбираем имя для новой группы
+           - создаём новую группу со всеми опуиональными параметрами
+    Тест:
+        Шаг1: отправляем запрос modifygroup со всеми
+        Шаг2: с помощью 'assert' сравниваем полученный ответ с переданной в запросе creategroup информацией.
+    "
+"failed","Mon Nov 02 11:49:42 UTC 2020","Mon Nov 02 11:49:47 UTC 2020","5011","Antelope","test_transferbalance","","","","Запрос transferbalance: проверка работы: перевод средств с одного аккаунта на один аккаунт, разные валюты.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,105. - на 105 валюта EUR, на 100 - USD
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг0: вбрасываем котировку EURUSD bid=0.5000, ask=0.5000
+            Шаг1: запрос servertime - параметр from для getbalancesoperations
+            Шаг2: отправляем запрос transferbalance на перевод средств с 100 аккаунта на 105 100$
+            Шаг3: проверка ответа
+            Шаг4: запрос servertime - параметр to для getbalancesoperations
+            Шаг5: Запрос getbalancesoperations для from_logins - 100 аккаунта
+            Шаг6: проверяем данные
+            Шаг7: Запрос getbalancesoperations для receiver_logins - 105 аккаунта
+            Шаг8: проверяем данные
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:21 UTC 2020","Mon Nov 02 11:43:21 UTC 2020","3","Antelope","test_echo","","","","Запрос echo: проверка работы.","
+    Описание шагов:
+        Setup: -
+        Тест: у запроса нет параметров.
+        Ожидаемый ответ: 'action=echo&request_id='
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:41:04 UTC 2020","Mon Nov 02 11:41:04 UTC 2020","2","Antelope","test_changebalance","","","","Запрос changebalance: некорректные значения в параметрах.","  Описание теста: запрос с некорректными значениями в параметрах.
+    Ожмдаемый ответ: WIK возвращает ошибку
+
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: отправляю запрос changebalance на пополнение аккаунта на 10.000 с login=asd.
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+            Шаг2: отправляю запрос changebalance на пополнение аккаунта на 10.000 с value=asd.
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунта
+
+    "
+"passed","Mon Nov 02 11:46:05 UTC 2020","Mon Nov 02 11:46:05 UTC 2020","2","Antelope","test_getopenpositionsforlogin","","","","Запрос getopenpositionsforlogin: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест: отправляем запрос getopenpositionsforlogin с некорректным значением в login.
+            Ожидаемый результат:должен вернуться ответ 'result=-3&reason=parsing_problem&request_id='
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:48:38 UTC 2020","Mon Nov 02 11:48:38 UTC 2020","4","Antelope","test_modifygroup","","","","Запрос modifygroup: с ошибкой в обязательном параметре или отсутствием.","
+    Описание шагов:
+        Setup: Создаём группу.
+        Тест:
+            Шаг1: запрос modifygroup с ошибкой в параметре name
+            Шаг2: запрос modifygroup с ошибкой в параметре currency
+            Шаг3: запрос modifygroup без параметра name
+            Шаг4: запрос modifygroup без параметра currency
+        Ожидаемый результат: возвращается ошибка 'result=-3&reason=invalid params (required params are name, currency)&request_id='
+    "
+"failed","Mon Nov 02 11:46:59 UTC 2020","Mon Nov 02 11:46:59 UTC 2020","3","Antelope","test_getordershistory","","","","Запрос getordershistory: в перечне некорректное значение.","
+    Описание шагов:
+        Setup: создаём аккаунты 100, 101
+            - Пополняем баланс
+            - Вбрасываем котировку
+            - Устанавливаем пендинг
+            - Вбрасываем котировку, которой активируем пендинг.
+        Тест:
+            Шаг1: отправляем запрос getordershistory с несуществющим 99 логином в перечне
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ: result=1&reason=&items=10&failed_login=asd&size=1127
+                             100; -------
+                             &request_id=
+        Tear down:
+            - Удаление аккаунтов
+
+    "
+"passed","Mon Nov 02 11:43:57 UTC 2020","Mon Nov 02 11:43:57 UTC 2020","5","Antelope","test_getcharthistory","","","","Запрос getcharthistory: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: отправляем запрос servertime - значение from
+             - вбрасываем котировку запросом addquote.
+             - отправляем запрос servertime - значение to
+        Тест:
+            Шаг1: отправляем запрос getcharthistory с ошибкой в параметре symbol
+            Шаг1: отправляем запрос getcharthistory с ошибкой в параметре from
+            Шаг1: отправляем запрос getcharthistory с ошибкой в параметре to
+            Шаг1: отправляем запрос getcharthistory без параметра symbol
+            Шаг1: отправляем запрос getcharthistory без параметра from
+            Шаг1: отправляем запрос getcharthistory без параметра to
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are symbol, from, to)&request_id=
+
+
+    "
+"passed","Mon Nov 02 11:44:35 UTC 2020","Mon Nov 02 11:44:35 UTC 2020","3","Antelope","test_getdealshistory","","","","Запрос getdealshistory: проверка работы перечень логинов.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+        Тест:
+            Шаг1: отправляем запрос getdealshistory
+            Шаг2: проверка ответа
+        Tear down:
+            - Удаление аккаунта
+    "
+"failed","Mon Nov 02 11:40:09 UTC 2020","Mon Nov 02 11:40:09 UTC 2020","4","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal: в перечне есть некорректное значение.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрсоом getdealshistory находим номер нужной сделки.
+        Тест:
+            Шаг1: отправляем запрос bulkmodifydeal с несуществующими данными в перечне в deals
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ: result=1&reason=&size=42
+                             deals_1;
+                             &failed_deals=7894561230&request_id= ""
+            Шаг3: проверка работы запроса для существующей сделки
+
+            Шаг4: отправляем запрос bulkmodifydeal с  deals=7895456184;asd
+            Ожидаемый ответ: result=-4&reason=&failed_deals=7895456184;asd&request_id=
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:02 UTC 2020","1007","Antelope","test_getopenpositions","","","","Запрос getopenpositions: проверка работы.","
+     Описание шагов:
+        Setup: создаем аккаунт
+               - пополняем баланс
+        Тест: у запроса нет параметров.Возвращает список групп с сервера.
+        Ожидаемый ответ: ""result=1&reason=&size=283
+                            363885;998;EURUSD;0;10000;1566562174;0.06658;0;0;-4000;-;;0
+                            363792;1016;USDCAD;0;10000;1565611014;0.00453;0;0;85029.74;-;;0
+
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:49:03 UTC 2020","Mon Nov 02 11:49:04 UTC 2020","1007","Antelope","test_openorder","","","","Запрос openorder: проверка работы запроса (sell).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг1: вбрасываем котировку
+            Шаг2: открываем на 100 аккаунте позицию
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","2","Antelope","test_getaccountbalance","","","","Запрос getaccountbalance: в перечне есть некорректное значение.","
+    Описание шагов:
+        Setup: Создание аккаунтов.
+        Тест:
+            Шаг1: запрос getaccountbalance с некорректным значением в перечне
+                Ожидаемый ответ: result=1&reason=&failed_logins=asd&users=1&size=12
+                             100;1000
+                             &request_id=
+            Шаг2: запрос getaccountbalance с некорректным значением и несуществующим логином в перечне
+                Ожидаемый ответ: result=-4&reason=&failed_logins=99;asd&users=0&size=&request_id=
+        Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getmargininfoex","","","","Запрос getmargininfoex: проверка работы запроса - перечень.","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfoex для двух аккаунтов.
+            Ожидаемый результат:  result=1&reason=&users=2&balance=5378&equity=6219&margin=0&freeMargin=6219&credit=841&failed_login=&size=50
+                                  100;balance;credit;equity;margin;freeMargin
+                                  101;balance;credit;equity;margin;freeMargin
+                                  &request_id='
+        Tear down:  удаление аккаунта
+    "
+"passed","Mon Nov 02 11:39:29 UTC 2020","Mon Nov 02 11:39:29 UTC 2020","2","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal: некорректное значение.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос bulkmodifydeal с некорректным значением в deals
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ: result=-3&reason=&size=42&failed_deals=asd&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","2","Antelope","test_getaccounts","","","","Запрос getaccounts: несуществующая группа.","
+    Описание шагов:
+        Setup:
+        Тест:
+            Шаг1: отправляем запрос getaccounts с несуществующей группой
+                Ожидаемый ответ:result=-4&reason=Unable get users for group test1, ret: MT_RET_ERR_NOTFOUND&request_id=
+        Tear down:
+    "
+"passed","Mon Nov 02 11:36:47 UTC 2020","Mon Nov 02 11:36:47 UTC 2020","2","Antelope","test_addquote","","","","Запрос addquote: несуществующий символ.","
+    Описание шагов:
+        Setup: -не требуется
+        Тест:
+            Шаг1: отправляем запрос addquote с несуществующим символом в symbol
+            Ожидаемый ответ: result=-4&reason=Tick add failed: MT_RET_ERR_PARAMS&failed_symbol=EEEEEEEEEEURUSDtest&request_id==
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:49:22 UTC 2020","Mon Nov 02 11:49:22 UTC 2020","1","Antelope","test_servertime","","","","Запрос servertime: проверка работы запроса.","
+    Описание шагов:
+        Тест: у запроса нет параметров.
+        Ожидаемый результат:'result=1&reason=&time=1566477651&request_id==
+
+        Tear down:
+    "
+"passed","Mon Nov 02 11:41:06 UTC 2020","Mon Nov 02 11:41:06 UTC 2020","2","Antelope","test_changecredit","","","","Запрос changecredit: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: отправляю запрос changecredit на пополнение аккаунта на 10.000 с login=asd.
+            Шаг2: отправляю запрос changecredit на пополнение аккаунта на 10.000 с value=asd.
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунта
+    "
+"failed","Mon Nov 02 11:49:27 UTC 2020","Mon Nov 02 11:49:37 UTC 2020","10024","Antelope","test_transferbalance","","","","Запрос transferbalance: проверка работы: перевод средств с одного аккаунта на один аккаунт, одна валюта.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,103.
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг1: запрос servertime - параметр from для getbalancesoperations
+            Шаг2: отправляем запрос transferbalance на перевод средств с 100 аккаунта на 103 100$
+            Шаг3: проверка ответа
+            Шаг4: запрос servertime - параметр to для getbalancesoperations
+            Шаг5: Запрос getbalancesoperations для from_logins - 100 аккаунта
+            Шаг6: проверяем данные - должно быть списано 100$
+            Шаг7: Запрос getbalancesoperations для receiver_logins - 103 аккаунта
+            Шаг8: проверяем данные
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:47:02 UTC 2020","Mon Nov 02 11:47:03 UTC 2020","1010","Antelope","test_getpl","","","","Запрос getpl: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 и пополняем ему баланс на 10.000.
+        Тест:
+        Шаг1: отправляем запрос getpl.
+        Ожидаемый результат:'result=1&reason=&size=2
+                             0
+                             &request_id='
+        Шаг2: открываем на аккаунте позицию
+        Шаг3:отправляем запрос getpl.
+        Ожидаемый результат:'result=1&reason=&size=537
+                             -100
+                             &request_id='
+
+        Tear down: удаляем позиции и удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:17 UTC 2020","Mon Nov 02 11:43:17 UTC 2020","3","Antelope","test_createaccount","","","","Запрос createaccount: существующий аккаунт.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляем запрос createaccount на создание 100 логина.
+            Ожидаемый овтет: result=-3&reason=Unable add user, ret: MT_RET_USR_LOGIN_EXIST&request_id=
+        Tear down: удаление аккаунтов
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_creategroup","","","","Запрос creategroup: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Тест:
+        шаг1: запрос creategroup с ошибкой в параметре name
+        шаг2: запрос creategroup без параметра name
+    Ожидаемый резльтат: 'result=-3&reason=invalid params (required params are name)&request_id='
+
+    !!! Группа не удаляется !!!"
+"passed","Mon Nov 02 11:36:48 UTC 2020","Mon Nov 02 11:36:49 UTC 2020","1004","Antelope","test_balancefix","","","","Запрос balancefix: проверка работы - два логина.","
+        Описание шагов:
+            Setup: Создание аккаунтов с историей.
+            Тест: запросом balancefix восстанавливаем баланс у аккаунтов и сравниваем с изначальным (0).
+            Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_createaccountsinrange","","","","Запрос createaccountsinrange: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountsinrange с некоррекным значением в параметре begin
+            Шаг2: отправляем запрос createaccountsinrange с некоррекным значением в параметре end
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунтов
+        "
+"failed","Mon Nov 02 11:48:12 UTC 2020","Mon Nov 02 11:48:12 UTC 2020","3","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: в перечне есть несуществующий логин.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,101.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрашиваем время сервера для значений from и to
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume c несуществующим логином в перечне - 99
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=1&reason=&users=2&failed_login=99&size=63
+                            login;order;symbol;price;close_price(-);profit;volume;open_time;close_time(-);conversation_price(-);comment;commission;commission_agent(-);action;profit_rate;dealer;entry
+                            &request_id=
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:21 UTC 2020","Mon Nov 02 11:43:21 UTC 2020","1","Antelope","test_deletepluginvalue","","","","Запрос deletepluginvalue: несуществующий плагин.","
+        Описание шагов:
+            Тест: отправляем запрос deletepluginvalue c несуществующим именем плагна
+                Ожидаемый ответ: result=-4&reason=Unable to get plugin config: MT_RET_ERR_NOTFOUND&request_id=
+            "
+"passed","Mon Nov 02 11:36:54 UTC 2020","Mon Nov 02 11:36:54 UTC 2020","8","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: Начисление и списание кредита - перечень","  Описание теста:
+
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangecredit на пополнение аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;10000;xxxxxx;1
+                        101;10000;xxxxxx;1
+                        &failed_logins=&request_id= ""
+            Шаг2: отправляю запрос bulkchangecredit на списание c аккаунта 10.000.
+            Ожидаемый ответ: ""result=1&reason=&size=42
+                        100;0;xxxxx;1
+                        101;0;xxxxxx;1
+                        &failed_logins=&request_id= ""
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","3","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount:  в перечне некоррекнтное значение.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: отправляем запрос bulkmodifyaccount с login='100;asd'
+            Ожидаемый ответ: ""result=1&reason=&size=42&failed_logins=asd&request_id= ""
+            Шаг2: отправляем запрос bulkmodifyaccount с login='99;asd'
+            Ожидаемый ответ: """"result=-4&reason=&size=42&failed_logins=99,asd&request_id= """"
+        Tear down: удаление аккаунтов
+
+   "
+"failed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","3","Antelope","test_getaccountinfo","","","","Запрос getaccountinfo: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 с заполненной карточкой.
+        Тест: отправляем запрос getaccountinfo, запрашиваем информацию по логину 100. Далее сравниваем полученную информацию с помощью 'assert'
+            Ожидаемый ответ: result=1&reason=&login=100&name=QA&email=email&group=demo\demoforex&leverage=200&regdate=1574254685&country=country&state=state&address=address&phone=phone&city=city&zipcode=zipcode&balance=1000&comment=comment&free_margin=1000&opened_positions=0&agent=1000&lastdate=1574254685&id=id&enable=1&enable_trading=1&enable_change_password=1&enable_trailing_stops=1&enable_one_time_password=1&enable_trading_by_expert_adv=1&enable_web_api_connection=1&enable_reports=1&change_password_at_next_login=1&sponsored_virtual_host=0&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:39 UTC 2020","Mon Nov 02 11:43:39 UTC 2020","1","Antelope","test_getbalancesoperations","","","","Запрос getbalancesoperations: несуществующий логин.","
+    Описание шагов:
+        Setup: -
+        Тест: отправляем запрос getbalancesoperations с несуществующим логином
+            Ожидаемый ответ:result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+    "
+"passed","Mon Nov 02 11:47:02 UTC 2020","Mon Nov 02 11:47:02 UTC 2020","1","Antelope","test_getpendingorders","","","","Запрос getpendingorders: проверка работы - нет открытых ордеров.","
+    Описание шагов:
+        Setup: создаем 1 аккаунт
+        Тест: Отправляем запрос getopenpositionsforlogin, проверяем ответ
+        Tear down: удаляем аккаунт
+        "
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","2","Antelope","test_getplugin","","","","Запрос getplugin: некорректные значения в опциональных параметрах.","
+    Описание шагов:
+        Тест:
+            Шаг1: отправляем запрос getplugin с несуществующим именем сервера server_type = 45
+            Ожидаемый ответ: result=-3&reason=Unable to find requested server&request_id=
+            Шаг2: отправляем запрос getplugin с несуществующим именем сервера server_type = ""asd""
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+    "
+"passed","Mon Nov 02 11:49:22 UTC 2020","Mon Nov 02 11:49:22 UTC 2020","5","Antelope","test_sendmail","","","","Запрос sendmail: проверка работы.","
+    Описание шагов:
+        Setup: создаем аккаунт 100
+        Тест: отправляем запрос sendmail - отправка сообщения с 1000 на 100
+        Tear down: удаление аккаунта
+        "
+"passed","Mon Nov 02 11:43:53 UTC 2020","Mon Nov 02 11:43:53 UTC 2020","6","Antelope","test_getcharthistory","","","","Запрос getcharthistory: параметры from/to.","
+    Описание шагов:
+        Setup: отправляем запрос servertime - значение from
+             - вбрасываем котировку запросом addquote.
+             - отправляем запрос servertime - значение to
+        Тест:
+            Шаг1: отправляем запрос getcharthistory с from>to
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+            Шаг2: отправляем запрос getcharthistory с from=to
+                Ожидаемый ответ: result=1&reason=&count=4&size=0&request_id=
+            Шаг3: отправляем запрос getcharthistory с from=0
+
+    "
+"passed","Mon Nov 02 11:36:49 UTC 2020","Mon Nov 02 11:36:49 UTC 2020","2","Antelope","test_balancefix","","","","Запрос balancefix: несуществующий аккаунт.","
+        Описание шагов:
+            Setup: Не требуется
+            Тест: отправляем запрос balancefix с несуществующим аккаунтом
+                Ожидаемый ответ: - result=-3&reason=&failed_logins=12&request_id=
+            Tear down: -
+    "
+"passed","Mon Nov 02 11:43:43 UTC 2020","Mon Nov 02 11:43:43 UTC 2020","7","Antelope","test_getcharthistory","","","","Запрос getcharthistory: проверка работы.","
+    Описание шагов:
+        Setup: отправляем запрос servertime - значение from
+             - вбрасываем котировку запросом addquote.
+             - отправляем запрос servertime - значение to
+        Тест:
+            Шаг1: отправляем запрос getcharthistory
+            Шаг2: проверяем ответ
+            !история символов создаётся 1 раз в минуту, оптимальный период шага from-to 60 секунд.
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:14 UTC 2020","Mon Nov 02 11:43:15 UTC 2020","1004","Antelope","test_closeposition","","","","Запрос closeposition: в перечне есть несуществующая позиция.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - пополняем ему баланс на 10.000.
+            - открываем 2 позиции.
+        Тест:
+            Шаг1: отправляем запрос closeposition с несуществующей позицией в перечне
+            Шаг2: проверяем ответ на запрос
+            Ожидаемый ответ:""result=1&reason=&failed_position=123&size=8
+                            pos1;
+                            &request_id=""
+            Шаг3: проверяем суцществующую сделку
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","2","Antelope","test_getaccountbalance","","","","Запрос getaccountbalance: в перечне есть несуществующий аккаунт.","
+        Описание шагов:
+            Setup: Создание аккаунтов.
+            Тест: запрос getaccountbalance с несуществующим 99 логином в перечне
+                            Ожидаемый ответ: result=1&reason=&failed_logins=99&users=1&size=12
+                                100;1000
+                                &request_id=
+            Tear down: - аккаунты удаляются
+    "
+"passed","Mon Nov 02 11:48:14 UTC 2020","Mon Nov 02 11:48:14 UTC 2020","2","Antelope","test_gettradingvolume","","","","Запрос gettradingvolume: некорректное значение логин.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос gettradingvolume с некорректным значением в параметре login
+            Шаг2: проверка ответа
+            Ожидаемый ответ: ""result=-3&reason=&users=1&size=63&failed_login=asd&request_id=""
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:40:55 UTC 2020","Mon Nov 02 11:40:55 UTC 2020","13","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal: некорректное значение в опциональных параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос bulkmodifydeal с action_ = asd
+            Шаг2: отправляем запрос bulkmodifydeal c action_=20 (принимает значения до 19)
+            Шаг3: отправляем запрос bulkmodifydeal с entry=asd
+            Шаг4: отправляем запрос bulkmodifydeal с entry = 5 (принимает значения до 4)
+            Шаг5: отправляем запрос bulkmodifydeal с volume=asd
+            Шаг6: отправляем запрос bulkmodifydeal с time=asdasd
+            Шаг7: отправляем запрос bulkmodifydeal с price=asd
+            Шаг8: отправляем запрос bulkmodifydeal с profit_rate=asd
+            Шаг9: отправляем запрос bulkmodifydeal с commission=asd
+            Шаг10: отправляем запрос bulkmodifydeal с swap=asd
+            Шаг11: отправляем запрос bulkmodifydeal с profit=asd
+            Шаг12: отправляем запрос bulkmodifydeal с margin_rate=asd
+            Шаг13: отправляем запрос bulkmodifydeal с sl=asd
+            Шаг14: отправляем запрос bulkmodifydeal с tp=asd
+            Шаг15: отправляем запрос bulkmodifydeal с reason=asd
+            Шаг16: отправляем запрос bulkmodifydeal с reason=19 (принимает значения до 18)
+            Шаг17: отправляем запрос bulkmodifydeal с gateway_price=asd
+
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:36:47 UTC 2020","Mon Nov 02 11:36:47 UTC 2020","2","Antelope","test_addquote","","","","Запрос addquote: проверка работы запроса bid>ask.","
+    Описание шагов:
+        Setup: -не требуется
+        Тест:
+            Шаг1: вбрасываем котировки bid>ask - это не корректные значения
+            Ожидаемый ответ: result=-3&reason=invalid params&request_id=
+        Tear down: -
+    "
+"failed","Mon Nov 02 11:44:18 UTC 2020","Mon Nov 02 11:44:18 UTC 2020","6","Antelope","test_getdealshistory","","","","Запрос getdealshistory: проверка работы","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+        Тест:
+            Шаг1: отправляем запрос на изменение данных о сделке
+            Шаг2: запрашиваем историю по необходимой сделке
+            Шаг3: проверка актуальных значений
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:48:45 UTC 2020","Mon Nov 02 11:48:45 UTC 2020","33","Antelope","test_modifypending","","","","Запрос modifypending: опциональные параметры price/sl/tp.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос modifypending sl>price при cmd=2
+            Шаг2: отправляем запрос modifypending sl<price при cmd=3
+            Шаг3: отправляем запрос modifypending sl=price
+            Шаг4: отправляем запрос modifypending tp>price при cmd=3
+            Шаг5:  отправляем запрос modifypending tp<price при cmd=2
+            Шаг6:  отправляем запрос modifypending tp=price
+            Ожидаемый ответ: result=1&reason=&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:36:50 UTC 2020","Mon Nov 02 11:36:50 UTC 2020","1","Antelope","test_balancefix","","","","Запрос balancefix: некорректные значения.","
+        Описание шагов:
+            Setup: Не требуется
+            Тест: отправляем запрос balancefix с logins=asd.
+                Ожидаемый результат: result=-3&reason=&failed_logins=asd&request_id=
+            Tear down: -
+    "
+"passed","Mon Nov 02 11:49:22 UTC 2020","Mon Nov 02 11:49:22 UTC 2020","6","Antelope","test_sendmail","","","","Запрос sendmail: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос sendmail с ошибкой в параметре to_login
+            Шаг2: отправляем запрос sendmail с ошибкой в параметре from_login
+            Шаг3: отправляем запрос sendmail с ошибкой в параметре subject
+            Шаг4: отправляем запрос sendmail с ошибкой в параметре body
+            Шаг5: отправляем запрос sendmail без параметра to_login
+            Шаг6: отправляем запрос sendmail без параметра from_login
+            Шаг7: отправляем запрос sendmail без параметра subject
+            Шаг8: отправляем запрос sendmail без параметра body
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are to_login, from_login, subject, body)&request_id=
+        Tear down: -
+        "
+"failed","Mon Nov 02 11:39:23 UTC 2020","Mon Nov 02 11:39:23 UTC 2020","4","Antelope","test_bulkmodifydeal","","","","Запрос bulkmodifydeal: в перечне есть несуществующая сделка.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрсоом getdealshistory находим номер нужной сделки.
+        Тест:
+            Шаг1: отправляем запрос bulkmodifydeal с несуществующими данными в перечне в deals
+            Шаг2: Проверяем ответ
+            Ожидаемый ответ: result=1&reason=&size=42
+                             deals_1;
+                             &failed_deals=7894561230&request_id= ""
+            Шаг3: проверка работы запроса для существующей сделки
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_createaccountsinrange","","","","Запрос createaccountsinrange: занятый диапазон.","
+    Описание шагов:
+        Setup: создаём аккаунты с 100 по 110.
+        Тест: отправляем запрос createaccountsinrange на создание аккаунтов с 100 по 110.
+        Ожидаемый ответ: result=-3&reason=unable to create account in range&request_id=
+        Tear down: удаление аккаунтов
+        "
+"passed","Mon Nov 02 11:49:01 UTC 2020","Mon Nov 02 11:49:02 UTC 2020","1007","Antelope","test_openorder","","","","Запрос openorder: проверка работы запроса (buy).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг1: вбрасываем котировку
+            Шаг2: открываем на 100 аккаунте позицию
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_deleteaccount","","","","Запрос deleteaccount: несуществующий аккаунт.","
+    Описание шагов:
+        Setup: не требуется
+        Тест: отправляем запрос о удалении несуществующего аккаунта и проверяем ответ
+            Ожидаемый результат: result=-4&reason=Unable change password, ret: MT_RET_ERR_NOTFOUND&request_id=
+    "
+"passed","Mon Nov 02 11:49:16 UTC 2020","Mon Nov 02 11:49:17 UTC 2020","1107","Antelope","test_openpending","","","","Запрос openpending: проверка работы запроса (sell stop).","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+        Тест:
+            Шаг0: Генерируем случайные числа для параметров sl, tp, volume и price для sell stop
+            Шаг1: вбрасываем котировку
+            Шаг2: устанавливаем пендинг на 100 аккаунте запросом openpending
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:43:14 UTC 2020","Mon Nov 02 11:43:14 UTC 2020","1","Antelope","test_closeposition","","","","Запрос closeposition: несуществующая позиция.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос closeposition с несуществующей позицией
+            Ожидаемый ответ:result=-4&reason=positions can not be closed&failed_position=123456&size=0&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:36:38 UTC 2020","Mon Nov 02 11:36:38 UTC 2020","2","Antelope","test_accounthavepositions","","","","Запрос accounthavepositions: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест:
+            Шаг1: Запрос accounthavepositions с ошибкой в параметре login
+            Шаг2: Запрос accounthavepositions без параметра login
+                Ожидаемый результат:должен вернуться ответ 'result=-3&reason=invalid params (required params are login)&request_id='
+        Tear down: -
+         "
+"passed","Mon Nov 02 11:48:56 UTC 2020","Mon Nov 02 11:48:57 UTC 2020","1005","Antelope","test_modifyposition","","","","Запрос modifyposition: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+             - вбрасываем котировку
+             - открываем позицию
+        Тест:
+            Шаг1: Генерируем случайные sl и tp для
+            Шаг2: меняем sl и tp с помощью modifyposition
+            Шаг3: запросом getopenpositionsforlogin запрашиваем информацию по позиции и сверяем с переданными в modifyposition данными
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","7","Antelope","test_modifyaccount","","","","Запрос modifyaccount: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг0: запрос modifyaccount с login='asd'
+            Шаг1: запрос modifyaccount с leverage='asd'
+            Шаг2: запрос modifyaccount с agent='asd'
+            Шаг3: запрос modifyaccount с enable='asd'
+            Шаг4: запрос modifyaccount с enable_trading='asd'
+            Шаг5: запрос modifyaccount с enable_change_password='asd'
+            Шаг6: запрос modifyaccount с enable_trailing_stops='asd'
+            Шаг7: запрос modifyaccount с enable_one_time_password='asd'
+            Шаг8: запрос modifyaccount с enable_trading_by_expert_adv='asd'
+            Шаг9: запрос modifyaccount с enable_web_api_connection='asd'
+            Шаг10: запрос modifyaccount с enable_reports='asd'
+        Ожидаемый результат: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунтов
+        "
+"passed","Mon Nov 02 11:36:53 UTC 2020","Mon Nov 02 11:36:53 UTC 2020","1","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: пустой комментарий.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangebalance на пополнение аккаунта на 10.000 с comment=''.
+            Ожидаемый ответ: result=-3&reason=comment is empty&request_id=
+        Tear down: удаление аккаунта
+
+     "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","8","Antelope","test_getaccounts","","","","Запрос getaccounts: проверка работы.","
+    Описание шагов:
+        Setup: создаём группу
+        Тест:
+            Шаг1: отправляем запрос getaccounts с пустой группой
+                Ожидаемый ответ: result=1&reason=&size=0&request_id=
+            Шаг2: отправляем запрос getaccounts с группой менеджеров
+                Ожидаемый ответ: result=1&reason=&size=6628......
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:20 UTC 2020","Mon Nov 02 11:43:21 UTC 2020","1012","Antelope","test_deletepluginvalue","","","","Запрос deletepluginvalue: проверка работы - не MainTrade.","
+    Описание шагов:
+            Тест:
+                Шаг1: удаляем параметр из конфига группы.
+                Шаг2: проверяем наличие удаленного параметра в конфиге запросом getplugin
+                Ожидаемый результат: result=1&reason=&name=uber_feed_mt5_test2_wik&request_id=
+            "
+"passed","Mon Nov 02 11:50:37 UTC 2020","Mon Nov 02 11:50:37 UTC 2020","5","Antelope","test_updatepluginvalue","","","","Запрос updatepluginvalue: некорректные значения в необязательном параметрах.","
+        Описание шагов:
+            Тест:
+                Шаг1: отправляем запрос updatepluginvalue c ошибкой в  параметре name
+                Шаг2: отправляем запрос updatepluginvalue c ошибкой в  параметре value
+                Шаг3: отправляем запрос updatepluginvalue c ошибкой в  параметре param
+                Шаг4: отправляем запрос updatepluginvalue без параметра name
+                Шаг5: отправляем запрос updatepluginvalue без параметра value
+                Шаг6: отправляем запрос updatepluginvalue без параметра param
+                Ожидаемый ответ: result=-3&reason=invalid params (required params are name, value, param)&request_id=
+            "
+"passed","Mon Nov 02 11:42:29 UTC 2020","Mon Nov 02 11:42:29 UTC 2020","3","Antelope","test_changedealcommission","","","","Запрос changedealcommission: некорректные значения в параметрах.","Описание теста: проверка работы запроса.
+
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос changedealcommission н с некорректными данными в deal
+            Шаг2: отправляем запрос changedealcommission н с некорректными данными в value
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"failed","Mon Nov 02 11:41:47 UTC 2020","Mon Nov 02 11:41:47 UTC 2020","6","Antelope","test_changedealcommission","","","","Запрос changedealcommission: проверка работы.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+            - Пополняем баланс аккаунта
+            - Открываем на нём позицию.
+            - Запрсоом getdealshistory находим номер нужной сделки.
+        Тест:
+            Шаг1: Рассчитываем новую комиссию для сделки
+            Шаг2: устанавливаем новую комиссию
+            Шаг3: запрашиваем историю по необходимой сделке и сверяем данные
+        Tear down:
+            - Закрытие сделки
+            - Удаление аккаунта
+    "
+"broken","Mon Nov 02 11:49:52 UTC 2020","Mon Nov 02 11:50:02 UTC 2020","10011","Antelope","test_transferbalance","","","","Запрос transferbalance: проверка работы: перевод средств с одного аккаунта на два аккаунта, одна валюта.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,103,104.
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг1: запрос servertime - параметр from для getbalancesoperations
+            Шаг2: отправляем запрос transferbalance на перевод средств с 100 аккаунта на 103 и 104 суммарно 100$
+            Шаг3: проверка ответа
+            Шаг4: запрос servertime - параметр to для getbalancesoperations
+            Шаг5: Запрос getbalancesoperations для from_logins - 100 аккаунта
+            Шаг6: проверяем данные
+            Шаг7: Запрос getbalancesoperations для receiver_logins - 103 аккаунта
+            Шаг8: проверяем данные
+            Шаг9: Запрос getbalancesoperations для receiver_logins - 104 аккаунта
+            Шаг10: проверяем данные
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","1","Antelope","test_getmargininfoex","","","","Запрос getmargininfoex: в перечне есть несуществующий логин","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfoex для двух аккаунтов.
+            Ожидаемый результат:  result=1&reason=&users=2&balance=5378&equity=6219&margin=0&freeMargin=6219&credit=841&failed_logins=99&size=50
+                                  100;balance;credit;equity;margin;freeMargin
+                                  101;balance;credit;equity;margin;freeMargin
+                                  &request_id='
+        Tear down:  удаление аккаунта
+    "
+"passed","Mon Nov 02 11:41:04 UTC 2020","Mon Nov 02 11:41:04 UTC 2020","4","Antelope","test_changebalance","","","","Запрос changebalance: некорректные обязательные параметры или их отсутствие.","  Описание теста: запрос с некорректными параметрами.
+    Ожмдаемый ответ: WIK возвращает ошибку
+
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: ошибка в параметре login
+            Шаг2: ошибка в параметре value
+            Шаг3: ошибка в параметре comment
+            Шаг4: отсутствует параметр comment
+            Шаг5: отсутствует параметр value
+            Шаг6: отсутствует параметр login
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:43:12 UTC 2020","Mon Nov 02 11:43:12 UTC 2020","4","Antelope","test_checkpassword","","","","Запрос checkpassword: некорректный пароль.","
+    Описание шагов:
+        Setup: Создаём аккаунт 100.
+        Тест: отправляем запрос checkpassword с pass = q2
+            Ожидаемый результат: result=-4&reason=Incorrect password, ret: MT_RET_USR_INVALID_PASSWORD&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:36:44 UTC 2020","Mon Nov 02 11:36:46 UTC 2020","2006","Antelope","test_addquote","","","","Запрос addquote: проверка работы запроса bid=ask.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 и пополняем ему баланс на 10.000.
+            Вбрасываем котировку и открываем ордер.
+        Тест:
+            Шаг1: отправляем запрос accounthaveorders. - првоеряем открылся ли ордер
+            Шаг2: вбрасываем котировку, что триггерит открытие ордера
+            Шаг3: отправляем запрос accounthaveorders. - првоеряем активировался ли ордер
+        Tear down: закрываем позицию и удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:49:20 UTC 2020","Mon Nov 02 11:49:20 UTC 2020","2","Antelope","test_openpending","","","","Запрос openpending: некорректные значения в опциональных параметрах.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос openpending с некорректным значением sl
+            Шаг2: отправляем запрос openpending с некорректным значением tp
+            Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:46:05 UTC 2020","Mon Nov 02 11:46:05 UTC 2020","2","Antelope","test_getopenpositionsforlogin","","","","Запрос getopenpositionsforlogin: несуществующий логин.","
+    Описание шагов:
+        Setup: -
+        Тест: отправляем запрос getopenpositionsforlogin с несуществующим логином
+            Ожидаемый результат:должен вернуться ответ 'result=-4&reason=Unable to get positions for login 100: MT_RET_ERR_NOTFOUND&request_id='
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:36:54 UTC 2020","Mon Nov 02 11:36:54 UTC 2020","5","Antelope","test_bulkchangecredit","","","","Запрос bulkchangecredit: в перечне некоррекнтное значение.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест:
+            Шаг1: отправляю запрос bulkchangecredit на пополнение аккаунта 10.000. в перечне некоррекнтное значение 'asd'
+            Ожидаемый ответ: ""result=1&reason=&failed_logins=asd&size=36
+                        100;10000;xxxxxx;1
+                        101;10000;xxxxxx;1
+                        &request_id= ""
+            Шаг2: отправляю запрос bulkchangecredit в перечне только asd;99 - некорректное значение и не существующий аккаунт
+        Tear down: удаление аккаунта
+         "
+"failed","Mon Nov 02 11:48:59 UTC 2020","Mon Nov 02 11:49:00 UTC 2020","1006","Antelope","test_modifyposition","","","","Запрос modifyposition: проверка работы параметров sl/tp.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем баланс
+             - вбрасываем котировку
+             - открываем позицию
+        Тест:
+            Шаг1: отправляем запрос modifyposition с sl>price cmd=0
+            Шаг2: отправляем запрос modifyposition с sl<price cmd=1
+            Шаг3: отправляем запрос modifyposition с tp<price cmd=0
+            Шаг4: отправляем запрос modifyposition с tp>price cmd=1
+            Шаг5: отправляем запрос modifyposition с sl=tp=price
+            Ожидаемый ответ: result=1&reason=&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:41:05 UTC 2020","Mon Nov 02 11:41:05 UTC 2020","6","Antelope","test_changecredit","","","","Запрос changecredit: Начисление и списание кредита.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+            Шаг1: отправляю запрос changecredit на пополнение аккаунта на 10.000. Проверяю кредит аккаунта.
+            Шаг2: отправляю запрос changecredit на списание аккаунта 1.000. Проверяю кредит аккаунта.
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:36:37 UTC 2020","Mon Nov 02 11:36:37 UTC 2020","6","Antelope","test_accounthavepositions","","","","Запрос accounthavepositions: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100 и пополняем ему баланс на 10.000.
+        Тест:
+            Шаг1: отправляем запрос accounthavepositions.
+                Ожидаемый результат:должен вернуться ответ 'result=1&reason=&login=100&positions=0&request_id='
+            Шаг2: открываем на аккаунте ордер
+            Шаг3:отправляем запрос accounthavepositions.
+                Ожидаемый результат:должен вернуться ответ 'result=1&reason=&login=100&positions=1&request_id='
+        Tear down: удаляем ордер и удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:20 UTC 2020","2011","Antelope","test_deletepluginvalue","","","","Запрос deletepluginvalue: проверка работы - MainTrade.","
+    Описание шагов:
+        Тест:
+            Шаг1: удаляем параметр из конфига.
+            Шаг2: проверяем наличие удаленного параметра в конфиге запросом getplugin
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","6","Antelope","test_getusersonline","","","","Запрос getusersonline: проверка работы запроса.","
+    Описание шагов:
+        Тест: у запроса нет параметров.
+        Ожидаемый результат:'result=1&reason=&count=4&size=72
+                            1000;192.168.56.1
+                            1000;192.168.56.1
+                            1000;192.168.56.1
+                            1000;192.168.56.1
+                             &request_id=
+
+        Tear down:
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","1","Antelope","test_getgroup","","","","Запрос getgroup: несуществующая группа.","
+    Описание шагов:
+        Тест: отправляем запрос getgroup с несуществующей группой
+        Ожидаемый ответ: result=-4&reason=Unable to get group 'tes': MT_RET_ERR_NOTFOUND&request_id=
+    "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","15","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount: проверка работы - один аккаунт.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест: отправляем запрос getaccountinfo, запрашиваем информацию по логину 100. Далее сравниваем полученную информацию с помощью 'assert'
+        Tear down: удаление аккаунтов
+
+    "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getmargininfoex","","","","Запрос getmargininfoex: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getmargininfoex с некорректным значением в параметре логин
+            Ожидаемый результат: ""result=-3&reason=&users=0&size=0&failed_logins=asd&request_id=""
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:47:02 UTC 2020","Mon Nov 02 11:47:02 UTC 2020","2","Antelope","test_getpendingorders","","","","Запрос getpendingorders: несуществующий аккаунт.","
+    Описание шагов:
+        Тест: Отправляем запрос getopenpositionsforlogin с несуществующим логином
+        "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","11","Antelope","test_getgroups","","","","Запрос getgroups: проверка работы.","
+    Описание шагов:
+        Setup: -
+        Тест: у запроса нет параметров.Возвращает список групп с сервера.
+        Ожидаемый ответ: ""result=1&reason=&groupsCount=27&size=553
+            managersdministrators;1;USD
+            managers\dealers;1;USD
+            demo\demoforex;1;USD
+            realeal;1;USD
+            preliminary;1;USD""
+
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:36:51 UTC 2020","Mon Nov 02 11:36:51 UTC 2020","8","Antelope","test_bulkchangebalance","","","","Запрос bulkchangebalance: Попытка списать в минус.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100, 101.
+        Тест: отправляю запрос bulkchangebalance на списание аккаунта 10.000.
+        Ожидаемый ответ: result=-4&reason=&failed_logins=1000&request_id=
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:43:22 UTC 2020","Mon Nov 02 11:43:22 UTC 2020","2","Antelope","test_getaccounts","","","","Запрос getaccounts: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup:
+        Тест:
+            Шаг1: отправляем запрос getaccounts с ошибкой в параметре group
+            Шаг2: отправляем запрос getaccounts с без параметра group
+                Ожидаемый ответ:result=-3&reason=invalid params (required params are group)&request_id=
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:32 UTC 2020","Mon Nov 02 11:43:32 UTC 2020","3","Antelope","test_getaccountswithpl","","","","Запрос getaccountswithpl: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getaccountswithpl с ошибкой в параметре typeofcomparison
+            Шаг2: отправляем запрос getaccountswithpl с ошибкой в параметре value
+            Шаг3: отправляем запрос getaccountswithpl без параметра typeofcomparison
+            Шаг4: отправляем запрос getaccountswithpl без параметра value
+            Ожидаемый ответ: result=-3&reason=invalid params (required params are value, typeofcomparison)&request_id=
+        Tear down: -
+    "
+"failed","Mon Nov 02 11:46:17 UTC 2020","Mon Nov 02 11:46:17 UTC 2020","11","Antelope","test_getordershistory","","","","Запрос getordershistory: проверка работы","
+    Описание шагов:
+        Setup: создаём аккаунты 100, 101
+            - Пополняем баланс
+            - Вбрасываем котировку
+            - Устанавливаем пендинг
+            - Вбрасываем котировку, которой активируем пендинг.
+        Тест:
+            Шаг1: отправляем запрос getordershistory
+            Шаг2: Проверяем ответ
+        Tear down:
+            - Удаление аккаунтов
+
+    "
+"passed","Mon Nov 02 11:50:27 UTC 2020","Mon Nov 02 11:50:27 UTC 2020","3","Antelope","test_transferbalance","","","","Запрос transferbalance: на from_logins недостаточно средств для перевода.","
+    Описание шагов:
+        Setup: создаём аккаунты с логином 100,101.
+            - Пополняем баланс аккаунта 100
+        Тест:
+            Шаг1: отправляем запрос transferbalance на перевод средств с 100 аккаунта на 101 1000000$
+            Шаг2: проверка ответа
+            Ожидаемый ответ: result=-4&reason=Unable to change balance on 100 with value -1000000, ret: MT_RET_REQUEST_NO_MONEY&request_id='
+        Tear down:
+            - Удаление аккаунта
+    "
+"passed","Mon Nov 02 11:48:37 UTC 2020","Mon Nov 02 11:48:37 UTC 2020","10","Antelope","test_info","","","","Запрос info: несуществующий метод.","
+        Описание шагов:
+            Setup: -
+            Тест: отправляем запрос с несуществующим методом
+                Ожидаемый результат: ""result=1&reason=&info=Can't generate documentation for action .....""
+            Tear down: -
+            "
+"passed","Mon Nov 02 11:50:37 UTC 2020","Mon Nov 02 11:50:37 UTC 2020","2","Antelope","test_updatepluginvalue","","","","Запрос updatepluginvalue: некорректные значения в необязательном параметрах.","
+        Описание шагов:
+            Тест: отправляем запрос updatepluginvalue c некорректным значением в параметре server_type.
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+            "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","4","Antelope","test_getmargininfoex","","","","Запрос getmargininfoex: проверка работы запроса.","
+    Описание шагов:
+        Setup: создаём аккаунтs с логином 100 и 101
+             - генерируем случайные числа баланса и кредита
+             - пополняем баланс и кредит аккаунтам
+        Тест:
+            Шаг1: отправляем запрос getmargininfoex для одного аккаунта.
+            Ожидаемый результат: 'result=1&reason=&users=1&balance=2228&credit=212&equity=2440&margin=0&freeMargin=2440&failed_logins=&size=25
+                                  100;2228;212;2440;0;2440
+                                  &request_id='
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:43:17 UTC 2020","Mon Nov 02 11:43:17 UTC 2020","2","Antelope","test_createaccount","","","","Запрос createaccount: короткий пароль.","
+        Описание шагов:
+            Setup: создаём аккаунт с логином 100.
+            Тест:
+                Шаг1:  отправляем запрос createaccount с password_investor='q3'.
+            Tear down: удаление аккаунта
+            "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_creategroup","","","","Запрос creategroup: существующая группа.","
+        Описание шагов:
+            Setup: Делаем проверку по имени группы аккаунта - есть ли он на сервере добавляем в конце 1 и проверяем до тех пор, пока группы не будет на сервере.
+            Тест: отправляем запрос creategroup на создание второй группы с выбранным в 'Setup' именем. Далее сравниваем ответ с помощью 'assert'
+
+        !!! Группа не удаляется !!!"
+"passed","Mon Nov 02 11:47:04 UTC 2020","Mon Nov 02 11:47:04 UTC 2020","2","Antelope","test_getpl","","","","Запрос getpl: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест: отправляем запрос getpl с некорректные значения в параметре логином
+        Ожидаемый результат:'result=-3&reason=parsing_problem&request_id='
+
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_deletependingorder","","","","Запрос deletependingorder: некорректное значение","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос deletependingorder с некорректным значением в параметре order
+            Шаг2: проверяем ответ
+            Ожидаемый ответ: result=-3&reason=&failed_order=asd&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:21 UTC 2020","Mon Nov 02 11:43:21 UTC 2020","4","Antelope","test_deletepluginvalue","","","","Запрос deletepluginvalue: некорректные значения в необязательном параметрах.","
+        Описание шагов:
+            Тест:
+                Шаг1: отправляем запрос deletepluginvalue c ошибкой в  параметре name
+                Шаг2: отправляем запрос deletepluginvalue c ошибкой в  параметре param
+                Шаг3: отправляем запрос deletepluginvalue без параметра name
+                Шаг4: отправляем запрос deletepluginvalue без параметра param
+                Ожидаемый ответ: result=-3&reason=invalid params (required params are name, param)&request_id=
+            "
+"failed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","9","Antelope","test_createaccountinrange","","","","Запрос createaccountinrange: некорректные значения в необязательных параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountinrange с некорректным значением в параметре leverage
+            Шаг2: отправляем запрос createaccountinrange с некорректным значением в параметре agent
+            Шаг3: отправляем запрос createaccountinrange с некорректным значением в параметре enable
+            Шаг4: отправляем запрос createaccountinrange с некорректным значением в параметре enable_change_password
+            Шаг5: отправляем запрос createaccountinrange с некорректным значением в параметре enable_trading
+            Шаг6: отправляем запрос createaccountinrange с некорректным значением в параметре enable_trading_by_expert_advisors
+            Шаг7: отправляем запрос createaccountinrange с некорректным значением в параметре enable_web_api_connection
+            Шаг8: отправляем запрос createaccountinrange с некорректным значением в параметре enable_daily_report
+            Шаг9: отправляем запрос createaccountinrange с некорректным значением в параметре enable_change_password_at_next_login
+            Шаг10: отправляем запрос createaccountinrange с некорректным значением в параметре enable_one_time_password
+            Шаг11: отправляем запрос createaccountinrange с некорректным значением в параметре enable_trailing_stop
+            Ожидаемый ответ:result=-3&reason=parsing_problem&request_id=
+
+        Tear down: удаление аккаунта
+    "
+"passed","Mon Nov 02 11:41:01 UTC 2020","Mon Nov 02 11:41:03 UTC 2020","2005","Antelope","test_changebalance","","","","Запрос changebalance: Попытка списать в минус.","
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100.
+        Тест:
+         Шаг1: отправляем запрос changebalance на списание аккаунта 10.000.
+         Шаг2: проверяка запросом getaccountbalance баланс аккаунта.
+
+        Tear down: удаление аккаунта
+         "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","3","Antelope","test_getmargininfoex","","","","Запрос getmargininfoex: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getmargininfoex с ошибкой в параметре login
+            Шаг1: отправляем запрос getmargininfoex без параметра login
+            Ожидаемый результат: ""result=-3&reason=invalid params (required params are login (separated by semicolon))&request_id=""
+        Tear down:-
+    "
+"passed","Mon Nov 02 11:43:59 UTC 2020","Mon Nov 02 11:43:59 UTC 2020","2","Antelope","test_getdealsforloginwithlimit","","","","Запрос getdealsforloginwithlimit: несуществующий аккаунт. ","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос getdealsforloginwithlimit с несуществующим логином
+            Шаг2: проверка ответ
+            Ожмдаемый ответ: result=-4&reason=Unable to get user info: MT_RET_ERR_NOTFOUND&request_id=
+
+    "
+"passed","Mon Nov 02 11:48:42 UTC 2020","Mon Nov 02 11:48:42 UTC 2020","5","Antelope","test_modifypending","","","","Запрос modifypending: некорректные volume.'Volume exceeds limits: min 100, max 1000000, step 100' ","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос modifypending с volume < 100
+            Шаг2: отправляем запрос modifypending с volume > 1000000
+            Шаг3: отправляем запрос modifypending с volume = 150 [step 100]
+            Ожидаемый ответ: result=1&reason=&request_id=
+        Tear down: закрываем позицию.
+             - удаляем аккаунт
+    "
+"passed","Mon Nov 02 11:49:20 UTC 2020","Mon Nov 02 11:49:21 UTC 2020","1006","Antelope","test_password","","","","Запрос changepassword и checkpassword: проверка работы.","
+        Описание теста: Меняем пароль на аккаунте и делаем 2 проверки пароля:
+        1 - проверка некорректная, т.е. с неверным паролем. Ожидаемый результат ответа '-4'
+        2 - проверка с корректным паролем. Ожидаемый результат ответа '1'"
+"passed","Mon Nov 02 11:36:37 UTC 2020","Mon Nov 02 11:36:37 UTC 2020","2","Antelope","test_accounthaveorders","","","","Запрос accounthaveorders: несуществующий аккаунт.","
+    Описание шагов:
+        Setup: Не требуется.
+        Тест:
+            Шаг1: Запрос accounthaveorders с несуществующим аккаунтом
+                Ожидаемый результат:должен вернуться ответ 'result=-4&reason=Unable to get orders for login 100: MT_RET_ERR_NOTFOUND&login=1&request_id='
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","7","Antelope","test_delay","","","","Запрос delay: проверка работы.","
+    Описание шагов:
+        Setup: -
+        Тест: запрос отправляет параметр timeout и через указанное количество времени возвращается ответ
+        Ожидаемый ответ: ""
+        Tear down: -
+        "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","2","Antelope","test_createaccountinrange","","","","Запрос createaccountinrange: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос createaccountinrange с некоррекным значением в параметре begin
+            Шаг2: отправляем запрос createaccountinrange с некоррекным значением в параметре end
+                Ожидаемый ответ: result=-3&reason=parsing_problem&request_id=
+        Tear down: удаление аккаунтов
+        "
+"passed","Mon Nov 02 11:43:49 UTC 2020","Mon Nov 02 11:43:49 UTC 2020","2","Antelope","test_getcharthistory","","","","Запрос getcharthistory: некорректные значения в параметрах.","
+    Описание шагов:
+        Setup: отправляем запрос servertime - значение from
+             - вбрасываем котировку запросом addquote.
+             - отправляем запрос servertime - значение to
+        Тест:
+            Шаг1: отправляем запрос getcharthistory с некорректным значением в from
+            Шаг2: отправляем запрос getcharthistory с некорректным значением в to
+                Ожмдаемый ответ: result=-3&reason=parsing_problem&request_id=
+
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:43:18 UTC 2020","Mon Nov 02 11:43:18 UTC 2020","24","Antelope","test_creategroup","","","","Запрос creategroup: аккаунты в новой группе","
+    Описание шагов:
+        Setup: Делаем проверку по имени группы аккаунта - есть ли он на сервере добавляем в конце 1 и проверяем до тех пор, пока группы не будет на сервере.
+        Тест: создаём аккаунты с помощью createaccountsinrange и запрашиваем из группы запросом getloginsbygroup существующие аккаунты - сравниваем.
+        Tear down: удаление аккаунтов
+
+    !!! Группа не удаляется !!!"
+"passed","Mon Nov 02 11:49:07 UTC 2020","Mon Nov 02 11:49:07 UTC 2020","13","Antelope","test_openorder","","","","Запрос openorder: опциональные параметры price/sl/tp.","
+    Описание шагов:
+        Setup: создаём аккаунт 100
+             - пополняем балан
+        Тест:
+            Шаг1: отправляем запрос openorder sl>price при cmd=0
+            Шаг2: отправляем запрос openorder sl<price при cmd=1
+            Шаг3: отправляем запрос openorder sl=price
+            Шаг4: отправляем запрос openorder tp>price при cmd=1
+            Шаг5:  отправляем запрос openorder tp<price при cmd=0
+            Шаг6:  отправляем запрос openorder tp=price
+            Шаг7: отправляем запрос openorder sl=price=tp
+            Ожидаемый ответ: result=-3&reason=Failed to open order&orderid=0&request_id=
+        Tear down: -
+    "
+"passed","Mon Nov 02 11:36:55 UTC 2020","Mon Nov 02 11:36:55 UTC 2020","2","Antelope","test_bulkmodifyaccount","","","","Запрос bulkmodifyaccount: некорректные обязательные параметры или их отсутствие.","
+    Описание шагов:
+        Setup: -
+        Тест:
+            Шаг1: отправляем запрос bulkmodifyaccount с ошибкой в параметре login
+            Шаг2: отправляем запрос bulkmodifyaccount с без параметра login
+            Ожидаемый ответ: ""result=-3&reason=invalid params (required params are login (separated by semicolon))&request_id=""
+        Tear down: -
+
+   "
+"passed","Mon Nov 02 11:46:01 UTC 2020","Mon Nov 02 11:46:01 UTC 2020","2","Antelope","test_getloginsbygroup","","","","Запрос getloginsbygroup: пустая группа.","
+    Описание шагов:
+        Setup:создаём новую группу
+        Тест: отправляем запрос getloginsbygroup с пустой группой
+        Ожидаемый результат: result=1&reason=&logins=0&request_id=
+    "
+"passed","Mon Nov 02 11:43:25 UTC 2020","Mon Nov 02 11:43:25 UTC 2020","13","Antelope","test_getaccountswithpl","","","","Запрос getaccountswithpl: проверка работы запроса","
+    Описание запроса:
+    ""Description: Returns data on all accounts with profit/loss. typeofcomparison parameter has the following values:
+    ➢1–greater_than,
+    ➢2–less_than,
+    ➢3–equal""
+
+    Описание шагов:
+        Setup: создаём аккаунт с логином 100
+            - начисляем баланс 10.000.
+            - вбрасываем котировку EURUSD 0,9/1,0
+            - открываем позицию 0,01 лот buy - при таких настройках профит = - 100
+        Тест:
+            Шаг1: отправляем запрос getaccountswithpl с typeofcomparison=1 (value = -200)
+            Шаг2: отправляем запрос getaccountswithpl с typeofcomparison=2 (value = 200)
+            Шаг3: отправляем запрос getaccountswithpl с typeofcomparison=3 (value = -100)
+        Tear down: закрываем позицию
+            -удаляем аккаунт
+    "
