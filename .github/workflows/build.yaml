@@ -75,3 +75,4 @@ jobs:
           git add .
           git commit -m "Add new Allure report ($REPORT_FOLDER)"
           git push origin gh-pages
+        
