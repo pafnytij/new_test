@@ -44,12 +44,28 @@ jobs:
           REPORT_FOLDER="report-$(date +'%Y-%m-%d_%H-%M-%S')"
           echo "REPORT_FOLDER=$REPORT_FOLDER" >> $GITHUB_ENV
 
-      # Шаг 6: Клонирование ветки gh-pages
-      - name: Clone gh-pages branch
+      # Шаг 6: Клонирование или создание ветки gh-pages
+      - name: Clone or Initialize gh-pages Branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git clone --depth=1 --branch=gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+
+          if git ls-remote --exit-code --heads https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages; then
+            echo "Branch gh-pages exists. Cloning..."
+            git clone --depth=1 --branch=gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+          else
+            echo "Branch gh-pages does not exist. Initializing..."
+            mkdir gh-pages
+            cd gh-pages
+            git init
+            git checkout -b gh-pages
+            echo "<html><body><h1>Allure Reports</h1><ul></ul></body></html>" > index.html
+            git add index.html
+            git commit -m "Initialize gh-pages branch"
+            git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+            git push -u origin gh-pages
+          fi
+      
 
       # Шаг 7: Копирование нового отчета в уникальную папку
       - name: Copy Report to Unique Folder
