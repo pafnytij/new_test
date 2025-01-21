@@ -17,8 +17,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Шаг 2: Установка Allure Commandline
-      - name: Install Allure
+      # Шаг 2: Установка Allure
+      - name: Install Allure Commandline
         run: |
           wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure-2.18.1.tgz
           tar -zxvf allure-2.18.1.tgz
