@@ -26,10 +26,13 @@ jobs:
           fi
 
       # Шаг 3: Установка Allure
-      - name: Set up Allure
-        uses: KochetovNicolai/setup-allure@v1
-        with:
-          version: '2.18.1'
+      - name: Install Allure Commandline
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure-2.18.1.tgz
+          tar -zxvf allure-2.18.1.tgz
+          sudo mv allure-2.18.1 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+      
 
       # Шаг 4: Генерация однофайлового отчета (index.html)
       - name: Convert Allure Report to Single HTML
