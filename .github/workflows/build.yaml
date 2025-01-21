@@ -32,17 +32,20 @@ jobs:
           tar -zxvf allure-2.18.1.tgz
           sudo mv allure-2.18.1 /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+      
 
       # Шаг 4: Генерация однофайлового отчета (index.html)
       - name: Convert Allure Report to Single HTML
         run: |
          allure generate -c --single-file ./allure_results -o ./allure-report-html
 
-      # Шаг 5: Получение уникального имени для нового отчета (например, с использованием времени)
-      - name: Set unique report name
-        id: report_name
-        run: |
-          echo "report_name=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+
+      # Шаг 5:  Загрузка однофайлового отчета как артефакт
+      - name:  Upload Single HTML Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-html
+          path: ./allure-report-html
 
       # Шаг 6: Публикация отчета на GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
@@ -51,32 +54,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report-html
           publish_branch: gh-pages
-          commit_message: "Deploy Allure report: ${{ env.report_name }}"
 
-      # Шаг 7: Перемещение старых отчетов в папки с уникальными именами
-      - name: Move old reports to unique folders
-        run: |
-          # Создаём папку с уникальным именем для отчета
-          mkdir -p ./gh-pages/${{ env.report_name }}
-          mv ./allure-report-html/* ./gh-pages/${{ env.report_name }}
 
-      # Шаг 8: Создание ветки gh-pages, если она не существует
-      - name: Create gh-pages branch if not exists
-        run: |
-          git fetch origin
-          git checkout -b gh-pages origin/gh-pages || git checkout --orphan gh-pages
-
-      # Шаг 9: Подтягиваем изменения с удаленной ветки gh-pages
-      - name: Pull latest changes from gh-pages
-        run: |
-          git fetch origin gh-pages
-          git pull origin gh-pages
-
-      # Шаг 10: Публикация обновленной ветки gh-pages
-      - name: Commit and push updated gh-pages
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add -A
-          git commit -m "Update allure reports with new version"
-          git push origin gh-pages
