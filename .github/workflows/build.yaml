@@ -44,7 +44,13 @@ jobs:
         run: |
           echo "report_name=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
 
-      # Шаг 6: Публикация отчета на GitHub Pages
+      # Шаг 6: Создание ветки gh-pages, если она не существует
+      - name: Create gh-pages branch if not exists
+        run: |
+          git fetch origin
+          git checkout -b gh-pages origin/gh-pages || git checkout --orphan gh-pages
+
+      # Шаг 7: Публикация отчета на GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -53,14 +59,14 @@ jobs:
           publish_branch: gh-pages
           commit_message: "Deploy Allure report: ${{ env.report_name }}"
 
-      # Шаг 7: Перемещение старых отчетов в папки с уникальными именами
+      # Шаг 8: Перемещение старых отчетов в папки с уникальными именами
       - name: Move old reports to unique folders
         run: |
           # Создаём папку с уникальным именем для отчета
           mkdir -p ./gh-pages/${{ env.report_name }}
           mv ./allure-report-html/* ./gh-pages/${{ env.report_name }}
 
-      # Шаг 8: Публикация обновленной ветки gh-pages
+      # Шаг 9: Публикация обновленной ветки gh-pages
       - name: Commit and push updated gh-pages
         run: |
           git config --global user.name "github-actions"
