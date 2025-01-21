@@ -1,0 +1,1 @@
+Ответ запроса addquote :  {'result': '1', 'reason': '', 'request_id': ''}

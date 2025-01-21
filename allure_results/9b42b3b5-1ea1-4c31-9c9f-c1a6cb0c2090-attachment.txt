@@ -1,0 +1,1 @@
+Ответ на запрос bulkmodifydeal шаг1:  {'result': '1', 'reason': '', 'failed_deals': 'asd', 'size': [{'deal': '194174'}], 'request_id': ''}

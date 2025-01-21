@@ -1,0 +1,1 @@
+Ответ на запрос checkpassword:  {'result': '-4', 'reason': 'Incorrect password, ret: MT_RET_ERR_NOTFOUND', 'request_id': ''}

@@ -1,0 +1,1 @@
+Ответ на запрос checkpassword:  {'result': '-3', 'reason': 'invalid params (required params are login, pass)', 'request_id': ''}

@@ -1,0 +1,1 @@
+Ответ на запрос getaccountbalance :  {'result': '-3', 'reason': 'invalid params (required params are login)', 'request_id': ''}

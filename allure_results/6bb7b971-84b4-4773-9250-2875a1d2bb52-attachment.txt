@@ -1,0 +1,1 @@
+Ответ на запрос getmargininfoex:  {'result': '1', 'reason': '', 'users': '1', 'balance': '3701', 'credit': '156', 'equity': '3857', 'margin': '0', 'freeMargin': '3857', 'failed_logins': '', 'size': [{'login': '100', 'balance': '3701', 'credit': '156', 'equity': '3857', 'margin': '0', 'freeMargin': '3857'}, {'login': ''}], 'request_id': ''}

@@ -1,0 +1,2 @@
+Ответ запроса accounthaveorders - на аккаунте нет ордеров:  {'result': '1', 'reason': '', 'login': '100', 'orders': '0', 'request_id': ''}
+Ответ запроса accounthaveorders - на аккаунте есть ордер:  {'result': '1', 'reason': '', 'login': '100', 'orders': '1', 'request_id': ''}

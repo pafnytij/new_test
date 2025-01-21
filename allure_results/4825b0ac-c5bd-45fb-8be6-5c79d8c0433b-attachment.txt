@@ -1,0 +1,6 @@
+Ответ запроса addquote шаг1:  {'result': '-3', 'reason': 'invalid params (required params are symbol, bid, ask)', 'request_id': ''}
+Ответ запроса addquote шаг2:  {'result': '-3', 'reason': 'invalid params (required params are symbol, bid, ask)', 'request_id': ''}
+Ответ запроса addquote шаг3:  {'result': '-3', 'reason': 'invalid params (required params are symbol, bid, ask)', 'request_id': ''}
+Ответ запроса addquote шаг4:  {'result': '-3', 'reason': 'invalid params (required params are symbol, bid, ask)', 'request_id': ''}
+Ответ запроса addquote шаг5:  {'result': '-3', 'reason': 'invalid params (required params are symbol, bid, ask)', 'request_id': ''}
+Ответ запроса addquote шаг6:  {'result': '-3', 'reason': 'invalid params (required params are symbol, bid, ask)', 'request_id': ''}

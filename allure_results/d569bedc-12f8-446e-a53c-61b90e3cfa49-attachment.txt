@@ -1,0 +1,1 @@
+Ответ на запрос deletepluginvalue :  {'result': '1', 'reason': '', 'name': 'uber_feed_mt5_test_wik', 'request_id': ''}

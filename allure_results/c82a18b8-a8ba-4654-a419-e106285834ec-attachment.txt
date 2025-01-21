@@ -1,0 +1,1 @@
+Ответ на запрос closeposition:  {'result': '-3', 'reason': 'positions can not be closed', 'failed_position': 'asd', 'size': [{'close_position': ''}], 'request_id': ''}

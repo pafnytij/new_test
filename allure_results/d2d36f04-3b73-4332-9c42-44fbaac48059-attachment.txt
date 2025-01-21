@@ -1,0 +1,1 @@
+Ответ на запрос getpendingorders:  {'result': '1', 'reason': '', 'trades': '1', 'size': [{'order': '103025', 'login': '100', 'symbol': 'EURUSD', 'order_type': 'OP_BUY_LIMIT', 'volume': '100', 'open_time': '1604328434', 'open_price': '0.9', 'sl': '0', 'tp': '0', 'comment': ''}, {'order': ''}], 'request_id': ''}

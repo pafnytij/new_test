@@ -1,0 +1,1 @@
+Ответ на запрос bulkchangebalance:  {'result': '-4', 'reason': '', 'failed_logins': '100', 'request_id': ''}

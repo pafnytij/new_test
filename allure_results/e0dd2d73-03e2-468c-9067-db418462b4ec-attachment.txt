@@ -1,0 +1,1 @@
+Ответ запроса accounthaveorders :  {'result': '-4', 'reason': 'Unable to get positions for login 100: MT_RET_ERR_NOTFOUND', 'login': '100', 'request_id': ''}

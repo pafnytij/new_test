@@ -1,0 +1,2 @@
+Ответ на запрос getloginsbygroup:  {'result': '-3', 'reason': 'invalid params (required params are group)', 'request_id': ''}
+Ответ на запрос getloginsbygroup:  {'result': '-3', 'reason': 'invalid params (required params are group)', 'request_id': ''}

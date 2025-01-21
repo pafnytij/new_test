@@ -1,0 +1,1 @@
+Ответ на запрос modifygroup:  {'result': '-4', 'reason': "Unable to get group 'test565z961690': MT_RET_ERR_NOTFOUND", 'request_id': ''}

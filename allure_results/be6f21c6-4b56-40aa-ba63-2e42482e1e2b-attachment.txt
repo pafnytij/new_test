@@ -1,0 +1,2 @@
+Ответ на запрос bulkchangecredit шаг1:  {'result': '1', 'reason': '', 'failed_logins': '', 'size': [{'login': '100', 'newcredit': '10000', 'deal': '193748'}, {'login': '101', 'newcredit': '10000', 'deal': '193749'}, {'login': ''}], 'request_id': ''}
+Ответ на запрос bulkchangecredit шаг2:  {'result': '1', 'reason': '', 'failed_logins': '', 'size': [{'login': '100', 'newcredit': '0', 'deal': '193750'}, {'login': '101', 'newcredit': '0', 'deal': '193751'}, {'login': ''}], 'request_id': ''}

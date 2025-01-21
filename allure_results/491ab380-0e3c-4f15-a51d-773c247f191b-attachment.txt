@@ -1,0 +1,1 @@
+Ответ на запрос createaccount:  {'result': '-3', 'reason': "Unable to get group 'alluretest': MT_RET_ERR_NOTFOUND", 'request_id': ''}

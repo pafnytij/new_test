@@ -1,0 +1,2 @@
+Ответ на запрос changebalance шаг1:  {'result': '1', 'reason': '', 'login': '100', 'deal': '193772', 'newbalance': '10000', 'request_id': ''}
+Ответ на запрос changebalance шаг2:  {'result': '1', 'reason': '', 'login': '100', 'deal': '193772', 'newbalance': '10000', 'request_id': ''}

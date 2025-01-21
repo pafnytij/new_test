@@ -1,0 +1,2 @@
+Ответ на запрос changecredit шаг1:  {'result': '1', 'reason': '', 'login': '100', 'deal': '194183', 'newcredit': '10000', 'request_id': ''}
+Ответ на запрос changecredit шаг2:  {'result': '1', 'reason': '', 'login': '100', 'deal': '194184', 'newcredit': '9000', 'request_id': ''}

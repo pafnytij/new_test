@@ -1,0 +1,1 @@
+Ответ на запрос changepassword:  {'result': '-4', 'reason': 'Unable change password, ret: MT_RET_USR_INVALID_PASSWORD', 'request_id': ''}

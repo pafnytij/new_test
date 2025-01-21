@@ -1,0 +1,1 @@
+Ответ на запрос getordershistory:  {'result': '-3', 'reason': 'invalid params (required params are from, to, logins)', 'request_id': ''}

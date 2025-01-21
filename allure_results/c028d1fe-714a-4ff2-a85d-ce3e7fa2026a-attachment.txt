@@ -1,0 +1,17 @@
+Ответ на запрос bulkmodifydeal шаг1:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг2:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг3:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг4:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг5:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг6:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг7:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг8:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг9:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг10:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг11:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг12:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг13:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг14:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг15:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг16:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос bulkmodifydeal шаг17:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}

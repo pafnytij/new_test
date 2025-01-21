@@ -1,0 +1,2 @@
+Ответ на запрос createaccountinrange:  {'result': '-3', 'reason': 'Unable add user, ret: MT_RET_USR_INVALID_PASSWORD', 'request_id': ''}
+Ответ на запрос createaccountinrange:  {'result': '-3', 'reason': 'Unable add user, ret: MT_RET_USR_INVALID_PASSWORD', 'request_id': ''}

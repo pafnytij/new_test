@@ -1,0 +1,1 @@
+Ответ запроса transferbalance :  {'result': '1', 'reason': '', 'size': [{'login': '100', 'balance': '900', 'credit': '0', 'equity': '900', 'margin': '0', 'margin_free': '900', 'success_flag': '1'}, {'login': '103', 'balance': '100', 'credit': '0', 'equity': '100', 'margin': '0', 'margin_free': '100', 'success_flag': '1'}, {'login': ''}], 'request_id': ''}

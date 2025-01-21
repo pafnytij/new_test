@@ -1,0 +1,2 @@
+Ответ на запрос bulkmodifyaccount шаг1:  {'result': '1', 'reason': '', 'failed_logins': 'asd', 'request_id': ''}
+Ответ на запрос bulkmodifyaccount шаг2:  {'result': '-4', 'reason': '', 'failed_logins': '99,asd', 'request_id': ''}

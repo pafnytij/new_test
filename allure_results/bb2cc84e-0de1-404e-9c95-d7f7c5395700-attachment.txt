@@ -1,0 +1,1 @@
+Ответ на запрос closeposition:  {'result': '1', 'reason': '', 'failed_position': '102982', 'size': [{'close_position': '102981'}, {'close_position': ''}], 'request_id': ''}

@@ -1,0 +1,1 @@
+Ответ на запрос getloginsbygroup:  {'result': '-4', 'reason': "Unable to get group 'asdasdasd': MT_RET_ERR_NOTFOUND", 'request_id': ''}

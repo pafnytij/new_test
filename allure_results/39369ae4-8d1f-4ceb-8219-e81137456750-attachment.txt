@@ -1,0 +1,1 @@
+Ответ на запрос modifygroup:  {'result': '-3', 'reason': 'invalid params (required params are name, currency)', 'request_id': ''}

@@ -1,0 +1,2 @@
+Ответ на запрос bulkchangebalance шаг1:  {'result': '1', 'reason': '', 'failed_logins': '99', 'size': [{'login': '100', 'newbalance': '10000', 'deal': '193742'}, {'login': '101', 'newbalance': '10000', 'deal': '193743'}, {'login': ''}], 'request_id': ''}
+Ответ на запрос bulkchangebalance шаг2:  {'result': '-4', 'reason': '', 'failed_logins': '97;98;99', 'request_id': ''}

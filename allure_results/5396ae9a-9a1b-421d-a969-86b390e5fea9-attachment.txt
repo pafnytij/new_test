@@ -1,0 +1,1 @@
+Ответ на запрос getgroupallowedsymbols:  {'result': '-4', 'reason': "Unable to get group 'test_getgroupallowedsymbols_2': MT_RET_ERR_NOTFOUND", 'request_id': ''}

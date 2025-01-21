@@ -1,0 +1,1 @@
+Ответ на запрос getcharthistory:  {'result': '1', 'reason': '', 'count': '1', 'size': [{'open': '0.5', 'open + close': '1', 'open + low': '1', 'open + high': '1.0001', 'time': '1604328180', 'volume': '0'}, {'open': ''}], 'request_id': ''}

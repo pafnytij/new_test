@@ -1,0 +1,1 @@
+Ответ на запрос creategroup :  {'result': '-3', 'reason': 'group test628L207387 exists', 'request_id': ''}

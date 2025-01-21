@@ -1,0 +1,1 @@
+Ответ на запрос info:  {'result': '1', 'reason': '', 'info': "Can't generate documentation for action '0' due to 'System.InvalidOperationException: Последовательность не содержит элементов\r\n   в System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)\r\n   в WIK5.Documentation.GenerateFor(String handlerName)'", 'request_id': ''}

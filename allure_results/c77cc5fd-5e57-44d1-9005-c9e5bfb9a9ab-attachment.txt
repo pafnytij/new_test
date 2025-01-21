@@ -1,0 +1,1 @@
+Ответ на запрос openorder:  {'result': '-3', 'reason': 'invalid params (required params are login, symbol, cmd, volume)', 'request_id': ''}

@@ -1,0 +1,3 @@
+Ответ на запрос openorder шаг1:  {'result': '-3', 'reason': 'Volume exceeds limits: min 100, max 1000000, step 100', 'request_id': ''}
+Ответ на запрос openorder шаг2:  {'result': '-3', 'reason': 'Volume exceeds limits: min 100, max 1000000, step 100', 'request_id': ''}
+Ответ на запрос openorder шаг3:  {'result': '-3', 'reason': 'Volume exceeds limits: min 100, max 1000000, step 100', 'request_id': ''}

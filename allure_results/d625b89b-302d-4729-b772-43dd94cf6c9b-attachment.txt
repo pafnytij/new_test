@@ -1,0 +1,2 @@
+Ответ на запрос getpl шаг1:  {'result': '-3', 'reason': 'invalid params (required params are login (separated by ;))', 'request_id': ''}
+Ответ на запрос getpl шаг2:  {'result': '-3', 'reason': 'invalid params (required params are login (separated by ;))', 'request_id': ''}

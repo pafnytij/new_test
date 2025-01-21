@@ -1,0 +1,2 @@
+Ответ на запрос openpending шаг3:  {'result': '1', 'reason': '', 'orderid': '103068', 'request_id': ''}
+Ответ на запрос getpendingorders:  {'result': '1', 'reason': '', 'trades': '1', 'size': [{'order': '103068', 'login': '100', 'symbol': 'EURUSD', 'order_type': 'OP_SELL_STOP', 'volume': '700', 'open_time': '1604328570', 'open_price': '0.5019', 'sl': '1.523', 'tp': '0.077', 'comment': ''}, {'order': ''}], 'request_id': ''}

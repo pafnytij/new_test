@@ -1,0 +1,2 @@
+Ответ на запрос changedealcommission шаг1:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос changedealcommission шаг2:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}

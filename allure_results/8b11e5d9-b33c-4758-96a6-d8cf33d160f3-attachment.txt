@@ -1,0 +1,1 @@
+Ответ на запрос getopenpositionsforlogin:  {'result': '-4', 'reason': 'Unable to get positions for login 100: MT_RET_ERR_NOTFOUND', 'request_id': ''}

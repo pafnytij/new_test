@@ -1,0 +1,2 @@
+Ответ запроса accounthaveorders шаг1:  {'result': '-3', 'reason': 'invalid params (required params are login)', 'request_id': ''}
+Ответ запроса accounthaveorders шаг2:  {'result': '-3', 'reason': 'invalid params (required params are login)', 'request_id': ''}

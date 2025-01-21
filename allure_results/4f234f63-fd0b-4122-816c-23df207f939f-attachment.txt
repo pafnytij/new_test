@@ -1,0 +1,3 @@
+Ответ на запрос openorder шаг1:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос openorder шаг2:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос openorder шаг3:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}

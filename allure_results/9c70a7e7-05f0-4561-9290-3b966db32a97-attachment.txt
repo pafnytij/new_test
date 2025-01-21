@@ -1,0 +1,1 @@
+Ответ на запрос getcharthistory:  {'result': '-3', 'reason': 'invalid params (required params are symbol, from, to)', 'request_id': ''}

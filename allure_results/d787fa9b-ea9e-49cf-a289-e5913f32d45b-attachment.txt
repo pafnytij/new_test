@@ -1,0 +1,1 @@
+Ответ запроса addquote :  {'result': '-4', 'reason': 'Tick add failed: MT_RET_ERR_PARAMS', 'failed_symbol': 'EEEEEEEEEEURUSDtest', 'request_id': ''}

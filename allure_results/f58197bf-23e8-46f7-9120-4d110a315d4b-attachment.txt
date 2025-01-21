@@ -1,0 +1,2 @@
+Ответ запроса accounthaveorders - на аккаунте нет позиций:  {'result': '1', 'reason': '', 'login': '100', 'positions': '0', 'request_id': ''}
+Ответ запроса accounthaveorders - на аккаунте есть позиция:  {'result': '1', 'reason': '', 'login': '100', 'positions': '1', 'request_id': ''}

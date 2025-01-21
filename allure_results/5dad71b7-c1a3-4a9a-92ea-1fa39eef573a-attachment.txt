@@ -1,0 +1,3 @@
+Ответ на запрос getaccountswithpl шаг1:  {'result': '-3', 'reason': 'Invalid parameter typeofcomparison.', 'request_id': ''}
+Ответ на запрос getaccountswithpl шаг2:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ на запрос getaccountswithpl шаг3:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}

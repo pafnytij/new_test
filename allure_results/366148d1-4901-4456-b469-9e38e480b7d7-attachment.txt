@@ -1,0 +1,1 @@
+Ответ на запрос balancefix:  {'result': '1', 'reason': '', 'failed_logins': 'asd', 'size': [{'login': '10'}], 'request_id': ''}

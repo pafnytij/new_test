@@ -1,0 +1,1 @@
+Ответ на запрос openpending:  {'result': '-3', 'reason': 'Failed to open order', 'orderid': '0', 'request_id': ''}

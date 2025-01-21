@@ -1,0 +1,2 @@
+Ответ на запрос bulkmodifyaccount шаг1:  {'result': '-3', 'reason': 'invalid params (required params are login (separated by semicolon))', 'request_id': ''}
+Ответ на запрос bulkmodifyaccount шаг2:  {'result': '-3', 'reason': 'invalid params (required params are login (separated by semicolon))', 'request_id': ''}

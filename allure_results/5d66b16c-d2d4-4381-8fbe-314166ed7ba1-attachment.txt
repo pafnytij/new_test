@@ -1,0 +1,2 @@
+Ответ на запрос getplugin шаг1:  {'result': '-3', 'reason': 'Unable to find requested server', 'request_id': ''}
+Ответ на запрос getplugin шаг2:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}

@@ -1,0 +1,1 @@
+Ответ на запрос getversion:  {'result': '1', 'reason': '', 'version': '1.3.2', 'request_id': ''}

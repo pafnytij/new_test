@@ -1,0 +1,1 @@
+Ответ на запрос openorder шаг2:  {'result': '1', 'reason': '', 'orderid': '103063', 'request_id': ''}

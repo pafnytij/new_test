@@ -1,0 +1,1 @@
+Ответ на запрос createaccount:  {'result': '-3', 'reason': 'Unable add user, ret: MT_RET_USR_LOGIN_EXIST', 'request_id': ''}

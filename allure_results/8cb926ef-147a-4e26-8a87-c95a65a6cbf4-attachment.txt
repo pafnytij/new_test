@@ -1,0 +1,1 @@
+Ответ запроса accounthaveorders :  {'result': '-4', 'reason': 'Unable get open orders for login 100, ret: MT_RET_ERR_NOTFOUND', 'login': '100', 'request_id': ''}

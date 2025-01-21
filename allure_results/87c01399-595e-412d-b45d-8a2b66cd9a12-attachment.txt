@@ -1,0 +1,2 @@
+Ответ на запрос getopenpositionsforlogin:  {'result': '1', 'reason': '', 'size': [{'position': ''}], 'request_id': ''}
+Ответ на запрос getopenpositionsforlogin:  {'result': '1', 'reason': '', 'size': [{'position': '102837', 'login': '100', 'symbol': 'EURUSD', 'action': '0', 'volume': '100', 'open_time': '1604324139', 'open_price': '1.00008', 'sl': '0', 'tp': '0', 'profit': '-0.08', '-': '-', 'swaps': '', 'comment': '0'}, {'position': ''}], 'request_id': ''}

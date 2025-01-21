@@ -1,0 +1,1 @@
+Ответ на запрос modifyposition:  {'result': '-4', 'reason': 'Unable to get position 987654321: MT_RET_ERR_NOTFOUND', 'request_id': ''}

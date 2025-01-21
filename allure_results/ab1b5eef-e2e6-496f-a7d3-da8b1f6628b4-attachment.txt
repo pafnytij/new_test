@@ -1,0 +1,1 @@
+Ответ на запрос getaccounts :  {'result': '-3', 'reason': 'invalid params (required params are group)', 'request_id': ''}

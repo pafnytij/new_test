@@ -1,0 +1,2 @@
+Ответ на запрос openorder:  {'result': '1', 'reason': '', 'orderid': '102891', 'request_id': ''}
+Ответ на запрос getopenpositionsforlogin:  {'result': '1', 'reason': '', 'size': [{'position': '102891', 'login': '100', 'symbol': 'EURUSD', 'action': '0', 'volume': '900', 'open_time': '1604324317', 'open_price': '0.9522', 'sl': '0.017', 'tp': '1.046', 'profit': '430.2', '-': '-', 'swaps': '', 'comment': '0'}, {'position': ''}], 'request_id': ''}

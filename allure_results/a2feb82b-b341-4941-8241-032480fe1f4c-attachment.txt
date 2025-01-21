@@ -1,0 +1,1 @@
+Ответ на запрос createaccountsinrange:  {'result': '-3', 'reason': 'invalid params (required params are begin, end, group, password_investor, password, name)', 'request_id': ''}

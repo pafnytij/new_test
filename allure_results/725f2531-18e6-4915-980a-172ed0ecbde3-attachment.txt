@@ -1,0 +1,1 @@
+Ответ на запрос modifygroup:  {'result': '1', 'reason': '', 'group': 'test893e820006', 'request_id': ''}

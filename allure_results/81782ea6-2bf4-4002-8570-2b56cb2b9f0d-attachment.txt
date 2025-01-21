@@ -1,0 +1,2 @@
+Ответ на запрос bulkchangecredit шаг1:  {'result': '-3', 'reason': '', 'failed_logins': 'asd', 'request_id': ''}
+Ответ на запрос bulkchangecredit шаг1:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}

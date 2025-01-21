@@ -1,0 +1,1 @@
+Ответ запроса transferbalance :  {'result': '-3', 'reason': 'Unable to change balance on 105 with value 200, ret: MT_RET_REQUEST_INVALID', 'request_id': ''}

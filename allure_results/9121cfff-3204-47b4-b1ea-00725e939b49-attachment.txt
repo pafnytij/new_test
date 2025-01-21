@@ -1,0 +1,2 @@
+Ответ на запрос getpl шаг1:  {'result': '1', 'reason': '', 'size': [{'pl_value': '0'}, {'pl_value': ''}], 'request_id': ''}
+Ответ на запрос getpl шаг2:  {'result': '1', 'reason': '', 'size': [{'pl_value': '-100'}, {'pl_value': ''}], 'request_id': ''}

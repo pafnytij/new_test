@@ -1,0 +1,1 @@
+Ответ на запрос getaccountbalance :  {'result': '1', 'reason': '', 'failed_logins': '', 'users': '2', 'size': [{'login': '100', 'balance': '1000'}, {'login': '101', 'balance': '10000'}, {'login': ''}], 'request_id': ''}

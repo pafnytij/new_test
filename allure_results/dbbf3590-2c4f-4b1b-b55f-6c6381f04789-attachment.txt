@@ -1,0 +1,1 @@
+Ответ запроса addquote :  {'result': '-3', 'reason': 'invalid params', 'request_id': ''}

@@ -1,0 +1,2 @@
+Ответ запроса addquote шаг1:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}
+Ответ запроса addquote шаг2:  {'result': '-3', 'reason': 'parsing_problem', 'request_id': ''}

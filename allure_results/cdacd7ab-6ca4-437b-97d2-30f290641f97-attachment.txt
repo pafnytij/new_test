@@ -1,0 +1,1 @@
+Ответ на запрос deletependingorder :  {'result': '-4', 'reason': '', 'failed_order': '32111589', 'request_id': ''}

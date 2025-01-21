@@ -1,0 +1,2 @@
+Ответ на запрос checkpassword - некорректный пароль:  {'result': '-4', 'reason': 'Incorrect password, ret: MT_RET_USR_INVALID_PASSWORD', 'request_id': ''}
+Ответ на запрос checkpassword - корректный пароль:  {'result': '-4', 'reason': 'Incorrect password, ret: MT_RET_USR_INVALID_PASSWORD', 'request_id': ''}

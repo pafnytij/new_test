@@ -1,0 +1,1 @@
+Ответ на запрос deleteaccount :  {'result': '-4', 'reason': 'Unable delete user 100: MT_RET_ERR_PARAMS', 'request_id': ''}

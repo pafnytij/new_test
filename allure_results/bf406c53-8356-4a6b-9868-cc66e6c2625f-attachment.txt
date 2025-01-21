@@ -1,0 +1,1 @@
+Ответ на запрос getmargininfo:  {'result': '-3', 'reason': '', 'failed_logins': 'asd', 'request_id': ''}

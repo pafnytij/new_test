@@ -1,0 +1,2 @@
+Ответ на запрос getplugin шаг1:  {'result': '-3', 'reason': 'invalid params (required params are name)', 'request_id': ''}
+Ответ на запрос getplugin шаг2:  {'result': '-3', 'reason': 'invalid params (required params are name)', 'request_id': ''}
