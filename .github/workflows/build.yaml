@@ -20,7 +20,7 @@ jobs:
 
       # Шаг 4: Загрузка отчета Allure как артефакт
       - name: Upload Allure Report as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: allure_results
           path: ./allure_results
