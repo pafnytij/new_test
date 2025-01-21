@@ -17,18 +17,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Шаг 2: Установка Allure Commandline
+      - name: Install Allure
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure-2.18.1.tgz
+          tar -zxvf allure-2.18.1.tgz
+          sudo mv allure-2.18.1 /opt/allure
+          export PATH=$PATH:/opt/allure/bin
 
-      # Шаг 4: Загрузка отчета Allure как артефакт
-      - name: Upload Allure Report as artifact
+      # Шаг 3: Генерация однофайлового отчета (index.html)
+      - name: Convert Allure Report to Single HTML
+        run: |
+         allure generate -c --single-file ./allure-results -o ./allure-report-html
+
+
+      # Шаг 4:  Загрузка однофайлового отчета как артефакт
+      - name:  Upload Single HTML Report
         uses: actions/upload-artifact@v3
         with:
-          name: allure_results
-          path: ./allure_results
+          name: allure-report-html
+          path: ./allure-report-html
 
       # Шаг 5: Публикация отчета на GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure_results  # Папка с готовым отчетом
+          publish_dir: ./allure-report-html
+          publish_branch: gh-pages
+
 
