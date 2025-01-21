@@ -38,38 +38,40 @@ jobs:
         run: |
           allure generate -c --single-file ./allure_results -o ./allure-report-html
 
-      # Шаг 5: Создание директории для отчета
-      - name: Prepare Report Directory
+      # Шаг 5: Подготовка уникального пути для отчета
+      - name: Prepare Unique Folder Name
         run: |
-          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-          REPORT_DIR="reports/$TIMESTAMP"
-          mkdir -p "./allure-reports/$REPORT_DIR"
-          mv ./allure-report-html/* "./allure-reports/$REPORT_DIR/"
-          echo $REPORT_DIR > report_dir.txt
+          REPORT_FOLDER="report-$(date +'%Y-%m-%d_%H-%M-%S')"
+          echo "REPORT_FOLDER=$REPORT_FOLDER" >> $GITHUB_ENV
 
-      # Шаг 6: Загрузка новых и старых отчетов
-      - name: Upload Old and New Reports
+      # Шаг 6: Клонирование ветки gh-pages
+      - name: Clone gh-pages branch
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin gh-pages
-          git checkout gh-pages || git checkout --orphan gh-pages
-          mkdir -p reports
-          cp -r ./allure-reports/reports/* reports/
-          git add reports
-          git commit -m "Add Allure report $TIMESTAMP"
-          git push origin gh-pages
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git clone --depth=1 --branch=gh-pages https://github.com/${{ github.repository }} gh-pages
 
-      # Шаг 7: Обновление индекса
-      - name: Update Index
+      # Шаг 7: Копирование нового отчета в уникальную папку
+      - name: Copy Report to Unique Folder
         run: |
-          INDEX_FILE="index.html"
-          echo "<html><head><title>Allure Reports</title></head><body><h1>Allure Reports</h1><ul>" > $INDEX_FILE
-          for REPORT in $(ls reports); do
-            echo "<li><a href=\"reports/$REPORT/index.html\">Report $REPORT</a></li>" >> $INDEX_FILE
+          mkdir -p gh-pages/$REPORT_FOLDER
+          cp -r ./allure-report-html/* gh-pages/$REPORT_FOLDER
+
+      # Шаг 8: Обновление корневого index.html для списка отчетов
+      - name: Update Index File
+        run: |
+          echo "<html><body><h1>Allure Reports</h1><ul>" > gh-pages/index.html
+          for dir in $(ls gh-pages); do
+            if [ -d "gh-pages/$dir" ]; then
+              echo "<li><a href=\"$dir/index.html\">$dir</a></li>" >> gh-pages/index.html
+            fi
           done
-          echo "</ul></body></html>" >> $INDEX_FILE
-          cp $INDEX_FILE ./allure-reports/
-          git add $INDEX_FILE
-          git commit -m "Update report index"
+          echo "</ul></body></html>" >> gh-pages/index.html
+
+      # Шаг 9: Публикация отчета на GitHub Pages
+      - name: Deploy Allure Reports to GitHub Pages
+        run: |
+          cd gh-pages
+          git add .
+          git commit -m "Add new Allure report ($REPORT_FOLDER)"
           git push origin gh-pages
