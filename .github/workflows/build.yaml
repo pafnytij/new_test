@@ -20,7 +20,7 @@ jobs:
       # Шаг 2: Проверка наличия результатов Allure
       - name: Check Allure Results Exist
         run: |
-          if [ ! -d "./allure-results" ]; then
+          if [ ! -d "./allure_results" ]; then
             echo "Allure results not found!"
             exit 1
           fi
@@ -36,7 +36,7 @@ jobs:
       # Шаг 4: Генерация однофайлового отчета (index.html)
       - name: Convert Allure Report to Single HTML
         run: |
-         allure generate -c --single-file ./allure-results -o ./allure-report-html
+         allure generate -c --single-file ./allure_results -o ./allure-report-html
 
 
       # Шаг 5:  Загрузка однофайлового отчета как артефакт
