@@ -32,27 +32,44 @@ jobs:
           tar -zxvf allure-2.18.1.tgz
           sudo mv allure-2.18.1 /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
-      
 
       # Шаг 4: Генерация однофайлового отчета (index.html)
       - name: Convert Allure Report to Single HTML
         run: |
-         allure generate -c --single-file ./allure_results -o ./allure-report-html
+          allure generate -c --single-file ./allure_results -o ./allure-report-html
 
+      # Шаг 5: Создание директории для отчета
+      - name: Prepare Report Directory
+        run: |
+          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+          REPORT_DIR="reports/$TIMESTAMP"
+          mkdir -p "./allure-reports/$REPORT_DIR"
+          mv ./allure-report-html/* "./allure-reports/$REPORT_DIR/"
+          echo $REPORT_DIR > report_dir.txt
 
-      # Шаг 5:  Загрузка однофайлового отчета как артефакт
-      - name:  Upload Single HTML Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: allure-report-html
-          path: ./allure-report-html
+      # Шаг 6: Загрузка новых и старых отчетов
+      - name: Upload Old and New Reports
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          git checkout gh-pages || git checkout --orphan gh-pages
+          mkdir -p reports
+          cp -r ./allure-reports/reports/* reports/
+          git add reports
+          git commit -m "Add Allure report $TIMESTAMP"
+          git push origin gh-pages
 
-      # Шаг 6: Публикация отчета на GitHub Pages
-      - name: Deploy Allure Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-report-html
-          publish_branch: gh-pages
-
-
+      # Шаг 7: Обновление индекса
+      - name: Update Index
+        run: |
+          INDEX_FILE="index.html"
+          echo "<html><head><title>Allure Reports</title></head><body><h1>Allure Reports</h1><ul>" > $INDEX_FILE
+          for REPORT in $(ls reports); do
+            echo "<li><a href=\"reports/$REPORT/index.html\">Report $REPORT</a></li>" >> $INDEX_FILE
+          done
+          echo "</ul></body></html>" >> $INDEX_FILE
+          cp $INDEX_FILE ./allure-reports/
+          git add $INDEX_FILE
+          git commit -m "Update report index"
+          git push origin gh-pages
